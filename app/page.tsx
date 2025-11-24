@@ -1,366 +1,291 @@
 "use client";
 
-// Next.js 14 + TailwindCSS + Framer Motion
-// Viyainfo landing page with:
-// - Sticky navbar with shadow on scroll
-// - Mobile hamburger menu
-// - Scrollspy active highlight
-// - Smooth scrolling to sections (same page)
-// - Basic animations via Framer Motion
-// - Services, About, Portfolio, Contact & Footer
-
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  Code2,
+  Smartphone,
+  Layers,
+  Palette,
+  CloudCog,
+  Workflow,
+  Mail,
+  MapPin,
+  Github,
+  Linkedin,
+  ChevronRight,
+} from "lucide-react";
 
-const sections = ["hero", "about", "services", "portfolio", "contact"] as const;
 
-type SectionId = (typeof sections)[number];
+// Services Data
+const services = [
+  {
+    icon: Code2,
+    title: "Web Application Development",
+    description:
+      "High-performance web apps built with React, Next.js and Angular — optimized for speed and SEO.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App Development",
+    description:
+      "Cross-platform mobile apps using React Native with secure APIs and cloud backends.",
+  },
+  {
+    icon: Layers,
+    title: "Fullstack Product Development",
+    description:
+      "End-to-end solutions from UI to database with Node.js, REST APIs and clean architecture.",
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    description:
+      "Intuitive interfaces, component systems and user journeys to improve engagement.",
+  },
+  {
+    icon: CloudCog,
+    title: "Cloud & DevOps",
+    description:
+      "AWS deployments, CI/CD pipelines, monitoring, automation and security best practices.",
+  },
+  {
+    icon: Workflow,
+    title: "Integrations & Automation",
+    description:
+      "Payment gateways, APIs and automation workflows that save your business hours every week.",
+  },
+];
+
+// Portfolio Data
+const projects = [
+  {
+    title: "HR Management Portal",
+    description:
+      "Attendance, leave, approvals and employee workflows in one integrated system.",
+  },
+  {
+    title: "Loan Processing Dashboard",
+    description:
+      "A secure dashboard for managing loan applications, verification and approvals.",
+  },
+  {
+    title: "AI Property Retrieval System",
+    description:
+      "Smart search and filtering engine for property datasets using intelligent logic.",
+  },
+];
+
 
 export default function Home() {
-  const [active, setActive] = useState<SectionId>("hero");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [shadow, setShadow] = useState(false);
-
-  const scrollToSection = (id: SectionId) => {
-    if (typeof document === "undefined") return;
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    const handler = () => {
-      const scrollY = window.scrollY;
-      setShadow(scrollY > 30);
-
-      sections.forEach((sec) => {
-        const el = document.getElementById(sec);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          setActive(sec);
-        }
-      });
-    };
-
-    handler(); // run once on mount
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
-  const linkClass = (id: SectionId) => {
-    const base = "transition-colors";
-    const activeClass = "text-yellow-300 font-semibold";
-    const idleClass = "hover:text-gray-200";
-    return `${base} ${active === id ? activeClass : idleClass}`;
-  };
-
   return (
-    <main className="bg-white text-black scroll-smooth min-h-screen">
-      {/* HEADER & NAV */}
-      <header
-        id="hero"
-        className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 text-white pb-20"
-      >
-        <nav
-          className={`flex items-center justify-between px-6 md:px-12 py-4 fixed top-0 w-full z-50 bg-white/10 backdrop-blur-md transition-shadow ${
-            shadow ? "shadow-lg" : ""
-          }`}
+    <main className="min-h-screen bg-slate-950 text-slate-100">
+
+      {/* ========================== HERO SECTION ============================= */}
+      <section className="max-w-6xl mx-auto px-4 pt-24 pb-16 grid gap-12 md:grid-cols-2 items-center">
+        
+        {/* Left Side */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
         >
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-yellow-300 to-purple-500" />
-            <span className="text-2xl font-bold tracking-wide">Viyainfo</span>
+          <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/70 border border-slate-700 px-3 py-1 text-xs">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            Viyainfo Tech Solutions
+          </span>
+
+          <h1 className="mt-6 text-3xl md:text-5xl font-semibold leading-tight">
+            Empowering Digital Products  
+            <span className="block text-blue-500">That Actually Ship</span>
+          </h1>
+
+          <p className="mt-4 text-slate-300 text-sm md:text-base max-w-xl">
+            We help startups and businesses design, build and scale modern web & mobile
+            applications using React, Angular, Node.js, and cloud-native architectures.
+          </p>
+
+          <div className="mt-6 flex gap-3 text-xs text-slate-300 flex-wrap">
+            <span className="rounded-full bg-slate-900/70 border border-slate-700 px-3 py-1">
+              3+ Years Fullstack Experience
+            </span>
+            <span className="rounded-full bg-slate-900/70 border border-slate-700 px-3 py-1">
+              Production-Ready Solutions
+            </span>
+            <span className="rounded-full bg-slate-900/70 border border-slate-700 px-3 py-1">
+              Secure & Scalable
+            </span>
           </div>
 
-          {/* Desktop menu */}
-          <div className="hidden md:flex gap-8 text-sm md:text-base items-center">
-            <button onClick={() => scrollToSection("about")} className={linkClass("about")}>
-              About
+          <div className="mt-8 flex gap-4">
+            <button className="rounded-lg bg-blue-600 hover:bg-blue-500 px-5 py-2.5 text-sm font-medium">
+              Contact Us
             </button>
-            <button onClick={() => scrollToSection("services")} className={linkClass("services")}>
-              Services
-            </button>
-            <button onClick={() => scrollToSection("portfolio")} className={linkClass("portfolio")}>
-              Portfolio
-            </button>
-            <button onClick={() => scrollToSection("contact")} className={linkClass("contact")}>
-              Contact
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="ml-4 px-4 py-2 rounded-full bg-white text-purple-700 font-semibold hover:bg-gray-100 transition"
-            >
-              Get Started
+            <button className="rounded-lg border border-slate-600 px-5 py-2.5 text-sm font-medium hover:bg-slate-900">
+              View Projects
             </button>
           </div>
+        </motion.div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden text-3xl leading-none"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-          >
-            {menuOpen ? "✕" : "☰"}
-          </button>
-        </nav>
+        {/* Right Visual */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="relative"
+        >
+          <div className="absolute -top-10 -left-10 h-40 w-40 bg-blue-500/20 blur-3xl rounded-full"></div>
+          <div className="absolute -bottom-10 -right-10 h-40 w-40 bg-emerald-500/20 blur-3xl rounded-full"></div>
 
-        {/* Mobile dropdown menu */}
-        {menuOpen && (
-          <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-black/70 backdrop-blur-md text-white px-6 py-6 space-y-4">
-            <button className="block w-full text-left" onClick={() => scrollToSection("about")}>
-              About
-            </button>
-            <button className="block w-full text-left" onClick={() => scrollToSection("services")}>
-              Services
-            </button>
-            <button className="block w-full text-left" onClick={() => scrollToSection("portfolio")}>
-              Portfolio
-            </button>
-            <button className="block w-full text-left" onClick={() => scrollToSection("contact")}>
-              Contact
-            </button>
-          </div>
-        )}
-
-        {/* HERO SECTION */}
-        <section className="px-6 md:px-20 pt-32 md:pt-40 flex flex-col md:flex-row items-center justify-between gap-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-xl"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-              Empowering
-              <span className="block">Digital Innovation</span>
-            </h1>
-            <p className="text-base md:text-lg mb-8 opacity-90">
-              Viyainfo Tech Solutions builds smart, scalable and secure software products tailored
-              for growing businesses.
+          <div className="relative border border-slate-800 rounded-2xl bg-slate-900/70 p-6">
+            <p className="text-xs text-emerald-400 mb-2">Tech Stack</p>
+            <p className="text-sm text-slate-200">
+              React · Next.js · Angular · Node.js · Express · AWS · CI/CD
             </p>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="px-6 py-3 bg-white text-purple-700 rounded-full font-semibold hover:bg-gray-100 transition"
-              >
-                Talk to Us
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="px-6 py-3 bg-transparent border border-white rounded-full font-semibold hover:bg-white hover:text-purple-700 transition"
-              >
-                View Services
-              </button>
-            </div>
+          </div>
+        </motion.div>
+      </section>
 
-            <div className="mt-8 flex flex-wrap gap-3 text-xs md:text-sm opacity-90">
-              {[
-                "3+ Years Experience",
-                "Fullstack Development",
-                "Secure Infrastructure",
-                "Client-Centric Approach",
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="px-4 py-2 rounded-full bg.white/10 border border-white/20 backdrop-blur-md bg-white/10"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center md:justify-end flex-1"
-          >
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-white/20 backdrop-blur-lg flex items-center justify-center shadow-2xl">
-              <Image src="/tech-sphere.png" alt="Tech visual" width={220} height={220} />
-            </div>
-          </motion.div>
-        </section>
-      </header>
+      {/* ========================== SERVICES SECTION ============================= */}
+      <section className="max-w-6xl mx-auto px-4 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl md:text-3xl font-semibold">Our Services</h2>
+          <p className="mt-3 text-slate-300 text-sm md:text-base">
+            End-to-end engineering solutions tailored to your business needs.
+          </p>
+        </motion.div>
 
-      {/* SERVICES SECTION */}
-      <section id="services" className="bg-white text-black py-20 md:py-24 px-6 md:px-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">Our Services</h2>
-        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
-          From UI to deployment, we provide end-to-end technology solutions for web and mobile.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Web Development",
-              desc: "Responsive, performant websites using modern stacks like React and Next.js.",
-            },
-            {
-              title: "Mobile Apps",
-              desc: "Cross-platform apps built with React Native and robust backend APIs.",
-            },
-            {
-              title: "Fullstack Solutions",
-              desc: "Complete systems from UI to database, designed for scale.",
-            },
-            {
-              title: "UI/UX Design",
-              desc: "Clean and intuitive user experiences for web and mobile products.",
-            },
-            {
-              title: "Cloud & DevOps",
-              desc: "Deployments on AWS / cloud with CI/CD, security and monitoring.",
-            },
-            {
-              title: "Automation & Integrations",
-              desc: "Workflows, APIs and tools that save time and reduce manual effort.",
-            },
-          ].map((service) => (
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition bg-white"
+              transition={{ delay: index * 0.05 }}
+              className="border border-slate-800 bg-slate-900/60 rounded-2xl p-6 hover:border-blue-500/60 hover:-translate-y-1 transition"
             >
-              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-gray-600 text-sm md:text-base">{service.desc}</p>
+              <service.icon className="h-6 w-6 mb-3 text-blue-400" />
+              <h3 className="font-medium text-base">{service.title}</h3>
+              <p className="mt-2 text-sm text-slate-300">{service.description}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ABOUT SECTION */}
-      <section
-        id="about"
-        className="py-20 md:py-24 px-6 md:px-20 bg-gradient-to-br from-purple-600 to-blue-500 text.white text-white"
-      >
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Who We Are</h2>
-            <p className="opacity-95 leading-relaxed mb-4 text-sm md:text-base">
-              Viyainfo Tech Solutions is a fullstack-focused tech partner helping startups and
-              businesses ship high-quality software faster.
-            </p>
-            <ul className="space-y-2 text-sm md:text-base">
-              <li>✔ Mission-driven, long-term partnerships</li>
-              <li>✔ Strong experience with React, Angular, Node.js and modern stacks</li>
-              <li>✔ Focus on clean architecture, performance and security</li>
-            </ul>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-2xl bg-white/15 backdrop-blur-xl h-56 md:h-64 flex items-center justify-center text-center text-sm md:text-base px-6"
-          >
-            Building reliable digital products with modern technology and a strong focus on user
-            experience.
-          </motion.div>
-        </div>
-      </section>
+      {/* ========================== ABOUT SECTION ============================= */}
+      <section className="max-w-6xl mx-auto px-4 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-3xl"
+        >
+          <h2 className="text-2xl md:text-3xl font-semibold">Who We Are</h2>
+          <p className="mt-4 text-slate-300 text-sm md:text-base leading-relaxed">
+            Viyainfo Tech Solutions is a fullstack-focused engineering partner helping
+            businesses launch scalable digital products. We specialize in modern JavaScript
+            frameworks and cloud-based architectures.
+          </p>
 
-      {/* PORTFOLIO SECTION */}
-      <section id="portfolio" className="py-20 md:py-24 px-6 md:px-20 bg-gray-50 text-black">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">Selected Work</h2>
-        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10 text-sm md:text-base">
-          A quick look at the kind of solutions we can build for you.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {["HR Management Portal", "Loan Processing Dashboard", "Property Retrieval System"].map(
-            (project) => (
-              <motion.div
-                key={project}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="rounded-2xl h-52 bg-white border border-gray-200 shadow-sm hover:shadow-xl transition p-5 flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="font-semibold mb-2 text-base md:text-lg">{project}</h3>
-                  <p className="text-gray-600 text-xs md:text-sm">
-                    Built with modern web technologies, focusing on performance, usability and
-                    scalability.
-                  </p>
-                </div>
-                <span className="mt-4 text-xs md:text-sm text-purple-700 font-medium">
-                  View case study (coming soon)
-                </span>
-              </motion.div>
-            )
-          )}
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
-      <section
-        id="contact"
-        className="py-20 md:py-24 px-6 md:px-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">Let&apos;s Build Something</h2>
-        <p className="text-center opacity-90 max-w-2xl mx-auto mb-10 text-sm md:text-base">
-          Share your idea or requirement and we&apos;ll get back to you with a clear next step.
-        </p>
-
-        <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-xl p-6 md:p-10 rounded-3xl">
-          <form className="grid grid-cols-1 gap-4 md:gap-6">
-            <input
-              className="p-3 md:p-4 rounded-xl bg-white text-black text-sm md:text-base"
-              placeholder="Your Name"
-            />
-            <input
-              className="p-3 md:p-4 rounded-xl bg.white text-black text-sm md:text-base bg-white"
-              placeholder="Email Address"
-              type="email"
-            />
-            <input
-              className="p-3 md:p-4 rounded-xl bg-white text-black text-sm md:text-base"
-              placeholder="Phone Number"
-              type="tel"
-            />
-            <textarea
-              className="p-3 md:p-4 rounded-xl bg-white text-black h-28 md:h-32 text-sm md:text-base"
-              placeholder="Tell us briefly about your project or requirement"
-            />
-            <button
-              type="submit"
-              className="mt-2 px-6 py-3 md:py-4 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition text-sm md:text-base"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="bg-black text-gray-300 py-8 px-6 md:px-20 text-sm">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 md:gap-0 md:items-center md:justify-between">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-yellow-300 to-purple-500" />
-              <span className="font-semibold text-white">Viyainfo Tech Solutions</span>
+          <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-blue-400 text-3xl font-bold">3+</p>
+              <p className="text-xs text-slate-400">Years Experience</p>
             </div>
-            <p className="text-xs md:text-sm text-gray-400">
-              Building reliable digital products with modern web and mobile technologies.
-            </p>
+            <div>
+              <p className="text-blue-400 text-3xl font-bold">10+</p>
+              <p className="text-xs text-slate-400">Projects Delivered</p>
+            </div>
+            <div>
+              <p className="text-blue-400 text-3xl font-bold">5+</p>
+              <p className="text-xs text-slate-400">Domains Covered</p>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4 text-xs md:text-sm">
-            <span>© {new Date().getFullYear()} Viyainfo. All rights reserved.</span>
-          </div>
+        </motion.div>
+      </section>
+
+
+      {/* ========================== PORTFOLIO SECTION ============================= */}
+      <section className="max-w-6xl mx-auto px-4 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl md:text-3xl font-semibold">Recent Projects</h2>
+          <p className="mt-3 text-slate-300 text-sm">
+            A glimpse of the solutions we’ve delivered.
+          </p>
+        </motion.div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              className="p-6 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 hover:-translate-y-1 transition"
+            >
+              <h3 className="text-lg font-medium">{project.title}</h3>
+              <p className="mt-2 text-sm text-slate-300">{project.description}</p>
+              <button className="mt-4 flex items-center gap-1 text-blue-400 text-sm hover:underline">
+                Learn More <ChevronRight size={16} />
+              </button>
+            </motion.div>
+          ))}
         </div>
+      </section>
+
+
+      {/* ========================== CONTACT SECTION ============================= */}
+      <section className="max-w-6xl mx-auto px-4 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h2 className="text-2xl md:text-3xl font-semibold">Let’s Build Together</h2>
+          <p className="mt-3 text-slate-300 text-sm max-w-lg mx-auto">
+            Share your idea and we’ll get back with a clear technical roadmap.
+          </p>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3 text-left">
+            <div className="p-6 border border-slate-800 rounded-2xl bg-slate-900/60">
+              <Mail className="h-6 w-6 mb-2 text-blue-400" />
+              <p className="font-medium">Email</p>
+              <p className="text-sm text-slate-300">contact@viyainfo.com</p>
+            </div>
+
+            <div className="p-6 border border-slate-800 rounded-2xl bg-slate-900/60">
+              <MapPin className="h-6 w-6 mb-2 text-blue-400" />
+              <p className="font-medium">Location</p>
+              <p className="text-sm text-slate-300">Bengaluru, India</p>
+            </div>
+
+            <div className="p-6 border border-slate-800 rounded-2xl bg-slate-900/60">
+              <Github className="h-6 w-6 mb-2 text-blue-400" />
+              <p className="font-medium">GitHub</p>
+              <p className="text-sm text-slate-300">github.com/viyainfo</p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+
+      {/* ========================== FOOTER ============================= */}
+      <footer className="border-t border-slate-800 py-6 text-center text-sm text-slate-400">
+        © {new Date().getFullYear()} Viyainfo Tech Solutions. All rights reserved.
       </footer>
+
     </main>
   );
 }
