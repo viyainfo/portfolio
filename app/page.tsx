@@ -1,5 +1,6 @@
 "use client";
 
+import GoToTop from "@/components/ui/GotoTop";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -19,6 +20,9 @@ import {
   Github,
   Linkedin,
 } from "lucide-react";
+import { FaReact, FaNodeJs, FaDocker, FaFigma } from "react-icons/fa";
+import { SiNextdotjs, SiMongodb, SiExpress, SiTailwindcss, SiFramer, SiGithubactions, SiOpenai, SiLangchain, SiVercel, SiAngular } from "react-icons/si";
+
 
 const fadeUp = {
   hidden: { opacity: 0 },
@@ -48,7 +52,7 @@ const Section = ({
 }) => (
   <section
     id={id}
-    className={`relative px-4 sm:px-6 lg:px-8 py-12 ${className}`}
+    className={`relative px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 ${className}`}
   >
     <div className="mx-auto max-w-6xl">{children}</div>
   </section>
@@ -70,7 +74,6 @@ export default function Home() {
       <Navbar />
       <main className="pt-20 sm:pt-24">
         <Hero />
-        <LogosStrip />
         <Services />
         <Process />
         <Projects />
@@ -78,6 +81,7 @@ export default function Home() {
         <FAQ />
         <Contact />
       </main>
+      <GoToTop />
       <Footer />
     </div>
   );
@@ -88,25 +92,16 @@ function Navbar() {
     { label: "Services", href: "#services" },
     { label: "Process", href: "#process" },
     { label: "Projects", href: "#projects" },
-    { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
   ];
 
   return (
     <header className="fixed top-0 inset-x-0 z-30 backdrop-blur-xl border-b border-slate-800/60 bg-slate-950/70">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-0 py-3.5">
         {/* Logo */}
         <a href="#top" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-fuchsia-500 to-cyan-400 shadow-lg shadow-fuchsia-500/40">
-            <span className="text-xs font-bold tracking-tight">V</span>
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm sm:text-base font-semibold">
-              ViyaInfo
-            </span>
-            {/* <span className="text-[10px] sm:text-xs text-slate-400">
-              Tech Solutions
-            </span> */}
+          <div className="w-[130]">
+            <img src='/viyainfo_white.svg' alt="ViyaIfo" />
           </div>
         </a>
 
@@ -129,7 +124,7 @@ function Navbar() {
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/40 hover:brightness-110 active:scale-[0.98] transition-all"
           >
-            <span>Book a project</span>
+            <span>Contact Us</span>
             <ArrowRight className="h-4 w-4" />
           </a>
         </div>
@@ -316,34 +311,71 @@ function Hero() {
           </div>
         </motion.div>
       </motion.div>
+      <LogosStrip />
     </Section>
   );
 }
 
 function LogosStrip() {
-  const logos = ["Next.js", "React", "Node.js", "Framer Motion", "Tailwind"];
+  const logos = [
+    { name: "Next.js", icon: <SiNextdotjs size={20} /> },
+    { name: "React", icon: <FaReact size={20} /> },
+    { name: "Angular", icon: <SiAngular size={20} /> },
+    { name: "Node.js", icon: <FaNodeJs size={20} /> },
+    { name: "Tailwind", icon: <SiTailwindcss size={20} /> },
+    { name: "Framer Motion", icon: <SiFramer size={20} /> },
+    { name: "MongoDB", icon: <SiMongodb size={20} /> },
+    { name: "Express.js", icon: <SiExpress size={20} /> },
+    { name: "OpenAI", icon: <SiOpenai size={20} /> },
+    { name: "LangChain", icon: <SiLangchain size={20} /> },
+    { name: "Figma", icon: <FaFigma size={20} /> },
+    { name: "Docker", icon: <FaDocker size={20} /> },
+    { name: "Vercel", icon: <SiVercel size={20} /> },
+    { name: "GitHub Actions", icon: <SiGithubactions size={20} /> },
+  ];
+
 
   return (
-    <Section >
-      <div className="rounded-3xl border border-slate-800/70 bg-slate-950/70 px-4 py-4 sm:px-6 sm:py-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="text-xs sm:text-sm text-slate-400 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span>Built with battle-tested technologies</span>
-          </div>
-          <div className="flex flex-wrap gap-3 text-[10px] sm:text-xs text-slate-300">
-            {logos.map((logo) => (
-              <div
-                key={logo}
-                className="rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1"
-              >
-                {logo}
+    <section className={`relative mt-8`}>
+      <div className="mx-auto max-w-6xl">
+        <div className="rounded-3xl border border-slate-800/70 bg-slate-950/70  py-4  sm:py-5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="overflow-hidden whitespace-nowrap w-full">
+              <div className="overflow-hidden w-full">
+                <motion.div
+                  className="flex gap-3 whitespace-nowrap"
+                  animate={{ x: ["0%", "-100%"] }}
+                  transition={{
+                    duration: 12,
+                    ease: "linear",
+                    repeat: Infinity,
+                  }}
+                >
+                  {logos.map((logo) => (
+                    <div
+                      key={logo.name + "-copy"}
+                      className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-[10px] sm:text-xs text-slate-300"
+                    >
+                      {logo.icon}
+                      {logo.name}
+                    </div>
+                  ))}
+                  {logos.map((logo) => (
+                    <div
+                      key={logo.name + "-copy"}
+                      className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-[10px] sm:text-xs text-slate-300"
+                    >
+                      {logo.icon}
+                      {logo.name}
+                    </div>
+                  ))}
+                </motion.div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
@@ -816,11 +848,11 @@ function Contact() {
               <div className="space-y-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-fuchsia-400" />
-                  <span>hello@viyainfo.com</span>
+                  <span>viyainfotechsolution@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-fuchsia-400" />
-                  <span>+91 · your-number-here</span>
+                  <span>+91 · 9353726228</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-fuchsia-400" />
@@ -849,10 +881,6 @@ function Contact() {
                   <span>LinkedIn</span>
                 </a>
               </div>
-              <p className="mt-2 text-[11px] text-slate-500">
-                Replace links with your actual profiles and this becomes your
-                portfolio hub.
-              </p>
             </div>
           </div>
         </motion.div>
@@ -866,7 +894,7 @@ function Footer() {
     <footer className="border-t border-slate-800/80 bg-slate-950/90 mt-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <div className="text-xs text-slate-500">
-          © {new Date().getFullYear()} Viyainfo. Crafted with Next.js & love.
+          © {new Date().getFullYear()} Viyainfo tech solutions.
         </div>
         <div className="flex flex-wrap gap-3 text-[11px] text-slate-400">
           <span>Built by Pavan Kumar</span>
