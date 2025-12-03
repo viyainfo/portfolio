@@ -1,68 +1,75 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 export function Testimonials() {
   const testimonials = [
     {
-      name: "Product Lead, SaaS Startup",
-      quote:
-        "Viyainfo felt like an internal product team, not an agency. They shipped our MVP faster than expected.",
+      title: "Architecture Planning",
+      description:
+        "We define the technical blueprint: database schema, APIs, cloud setup, performance strategy.",
     },
     {
-      name: "Founder, Fintech",
-      quote:
-        "Clear communication, clean code and strong design sense. Our investors loved the updated dashboard.",
+      title: "Sprint-based Development",
+      description:
+        "Bi-weekly sprints with clear deliverables, demos, and progress updates.",
+      featured: true,
     },
     {
-      name: "CTO, Services Company",
-      quote:
-        "Handled both UI and backend very smoothly. Their Next.js knowledge saved us weeks of trial and error.",
+      title: "Continuous Testing & Code Reviews",
+      description:
+        "Quality checks at every stage to ensure stable, maintainable code.",
     },
   ];
 
   return (
-    <Section>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeUp} custom={0} className="mb-8">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-50">
-            Trusted by teams who care about quality.
+    <Section className="">
+      <div className="space-y-12 overflow-hidden">
+        <div className="mb-20 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white flex justify-center items-center gap-2">
+            <span>
+              Why Choose
+            </span>
+            <span>
+              <img src='/viyainfo_brand.svg' alt="ViyaInfo" width={140} />
+            </span>
           </h2>
-          <p className="mt-2 text-sm text-slate-400 max-w-xl">
-            Consistent communication, maintainable code and design that actually
-            converts — that&apos;s the promise.
+          <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+            A structured approach to deliver high-quality products on time
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={fadeUp}
-          custom={0.12}
-          className="grid gap-5 lg:grid-cols-3"
-        >
-          {testimonials.map((t) => (
+        <div className="grid gap-2  lg:grid-cols-3 items-end max-w-6xl mx-auto px-4">
+          {testimonials.map((item, idx) => (
             <div
-              key={t.name}
-              className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5"
+              key={item.title}
+              className={`
+                relative rounded-t-3xl p-6 sm:p-8 transition-all duration-300 border border-slate-800/50
+                ${item.featured
+                  ? "bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 shadow-2xl lg:-mt-8 lg:py-12 lg:scale-105"
+                  : "bg-slate-900/90"
+                }
+                hover:scale-105 hover:shadow-2xl hover:border-slate-700 flex items-end
+              `}
+              style={{
+                minHeight: item.featured ? "420px" : "360px",
+                zIndex: item.featured ? 1 : 0
+              }}
             >
-              <Quote className="h-4 w-4 text-fuchsia-400" />
-              <p className="mt-3 text-xs sm:text-sm text-slate-300">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="mt-4 text-xs font-medium text-slate-400">
-                {t.name}
+              <div className="flex flex-col h-full justify-center">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
             </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </Section>
   );
 }
