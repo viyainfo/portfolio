@@ -1,14 +1,45 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import FloatingIcons from "../ui/FloatingIcons";
-import { SiAngular, SiExpress, SiFramer, SiJupyter, SiLangchain, SiMongodb, SiNextdotjs, SiOpenai, SiTailwindcss } from "react-icons/si";
-import { FaFigma, FaNodeJs, FaReact, FaInstagram, FaFacebook, FaWhatsapp, FaAppStoreIos } from "react-icons/fa";
-import { TbBrandReactNative, TbBrandAdobeXd, TbBrandAdobePhotoshop, TbBrandAdobe, TbBrandPython, TbBrandAndroid, TbAutomation } from "react-icons/tb";
+
+import {
+  SiAngular,
+  SiExpress,
+  SiFramer,
+  SiJupyter,
+  SiLangchain,
+  SiMongodb,
+  SiNextdotjs,
+  SiOpenai,
+  SiTailwindcss,
+} from "react-icons/si";
+
+import {
+  FaFigma,
+  FaNodeJs,
+  FaReact,
+  FaInstagram,
+  FaFacebook,
+  FaWhatsapp,
+  FaAppStoreIos,
+} from "react-icons/fa";
+
+import {
+  TbBrandReactNative,
+  TbBrandAdobeXd,
+  TbBrandAdobePhotoshop,
+  TbBrandAdobe,
+  TbBrandPython,
+  TbBrandAndroid,
+  TbAutomation,
+} from "react-icons/tb";
 
 export function Services() {
   const [active, setActive] = useState(1);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const t1 = useRef(null);
   const t2 = useRef(null);
@@ -16,11 +47,11 @@ export function Services() {
   const t4 = useRef(null);
   const t5 = useRef(null);
 
-  const v1 = useInView(t1, { amount: 0.4 });
-  const v2 = useInView(t2, { amount: 0.4 });
-  const v3 = useInView(t3, { amount: 0.4 });
-  const v4 = useInView(t4, { amount: 0.4 });
-  const v5 = useInView(t5, { amount: 0.4 });
+  const v1 = useInView(t1, { amount: 0.5 });
+  const v2 = useInView(t2, { amount: 0.5 });
+  const v3 = useInView(t3, { amount: 0.5 });
+  const v4 = useInView(t4, { amount: 0.5 });
+  const v5 = useInView(t5, { amount: 0.5 });
 
   useEffect(() => {
     if (v1) setActive(1);
@@ -30,209 +61,525 @@ export function Services() {
     else if (v5) setActive(5);
   }, [v1, v2, v3, v4, v5]);
 
-  // same logic as your 1–3 version
-  const getY = (cardIndex: number, activeIndex: number) => {
-    if (cardIndex === activeIndex) return 0;
-    if (cardIndex > activeIndex) return 750;
-    return -10 * (activeIndex - cardIndex);
+  // Swipe handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swipe left - next service
+      setActive((prev) => (prev < 5 ? prev + 1 : prev));
+    }
+    if (touchStart - touchEnd < -75) {
+      // Swipe right - previous service
+      setActive((prev) => (prev > 1 ? prev - 1 : prev));
+    }
+  };
+
+  const parentVariant = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,   // each child animates after 150ms
+      delayChildren: 0.1
+    }
+  }
+};
+
+const videoVariant = {
+  hidden: {
+    opacity: 0,
+    y: 40
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as any
+    }
+  }
+};
+
   return (
-    <div className="text-white py-32">
-      <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-16">
+    <div className="text-white py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6">
+      {/* Mobile Card Slider */}
+      <div className="md:hidden mb-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold">Our Services</h2>
+          <p className="text-sm sm:text-base text-slate-400 mt-2">
+            Fast, scalable, and user-friendly applications built with modern tech.
+          </p>
+        </div>
 
-        {/* LEFT SIDE */}
-        <aside className="md:sticky md:top-24 h-fit">
-          <div className="flex flex-col pb-8">
-            <span className="text-4xl font-bold">Our Services</span>
-            <span className="text-sm text-slate-400">
-              Fast, scalable, and user-friendly applications built with modern tech.
-            </span>
-          </div>
-
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="h-[80vh]"
-          >
-            {active === 1 && (
-              <div className="h-[90%]">
-                <div className="flex flex-col justify-between pb-10 h-[100%]">
-                  <div>
-                    <span className="font-bold text-2xl leading-10">Web Apps & Dashboards</span>
-                    <div className="text-justify">
-                      {/* <span className="text-md">Modern, scalable web applications built for speed and performance.</span> */}
-                      <span className="text-md text-slate-300"> We develop responsive apps and internal dashboards using clean APIs, secure architecture, and best-in-class frontend frameworks — tailored for startups and enterprises.</span>
+        {/* Swipeable Cards */}
+        <div 
+          className="overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.3 }}
+              className="bg-slate-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-800"
+            >
+              {active === 1 && (
+                <div>
+                  {/* Video Section */}
+                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                    <video
+                      src="/videos/dashboard.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                      Web Apps & Dashboards
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                      We develop responsive apps and internal dashboards using clean APIs,
+                      secure architecture, and best-in-class frontend frameworks —
+                      tailored for startups and enterprises.
+                    </p>
+                    
+                    {/* Icons Grid */}
+                    <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
+                      <FaReact size={32} className="text-blue-400" title="React" />
+                      <SiNextdotjs size={32} className="text-white" title="Next.js" />
+                      <SiAngular size={32} className="text-rose-600" title="Angular" />
+                      <SiTailwindcss size={32} className="text-cyan-500" title="Tailwind" />
+                      <FaNodeJs size={32} className="text-yellow-400" title="Node.js" />
+                      <SiExpress size={32} className="text-slate-500" title="Express" />
+                      <SiMongodb size={32} className="text-green-600" title="MongoDB" />
                     </div>
                   </div>
-                  <div>
-                    <FloatingIcons distance={25} duration={3}>
-                      <FaReact size={40} className="text-blue-400" />
-                      <SiNextdotjs size={40} className="text-white-500" />
-                      <SiAngular size={40} className="text-rose-600" />
-                      <SiTailwindcss size={40} className="text-cyan-500" />
-                      <FaNodeJs size={40} className="text-yellow-400" />
-                      <SiExpress size={40} className="text-slate-500" />
-                      <SiMongodb size={40} className="text-green-600" />
-                    </FloatingIcons>
+                </div>
+              )}
+
+              {active === 2 && (
+                <div>
+                  {/* Video Section */}
+                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                    <video
+                      src="/videos/mobile.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                      Mobile App Development
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                      We build high-quality mobile apps for Android & iOS using a shared
+                      codebase — ensuring fast delivery, smooth performance, and scalable
+                      architecture.
+                    </p>
+                    
+                    {/* Icons Grid */}
+                    <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
+                      <TbBrandReactNative size={32} className="text-sky-700" title="React Native" />
+                      <FaNodeJs size={32} className="text-yellow-400" title="Node.js" />
+                      <SiTailwindcss size={32} className="text-cyan-500" title="Tailwind" />
+                      <TbBrandAndroid size={32} className="text-green-500" title="Android" />
+                      <FaAppStoreIos size={32} className="text-sky-500" title="iOS" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-            {active === 2 && <div className=" h-[90%]">
-              <div className="flex flex-col justify-between pb-10 h-[100%]">
+              )}
+
+              {active === 3 && (
                 <div>
-                  <span className="font-bold text-2xl leading-10">Mobile App Development</span>
-                  <div className="text-justify">
-                    {/* <span className="text-md">Cross-platform mobile apps with a seamless user experience.</span> */}
-                    <span className="text-md text-slate-300"> We build high-quality mobile apps for Android & iOS using a shared codebase, ensuring fast delivery, smooth performance, and scalable architecture.</span>
+                  {/* Video Section */}
+                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                    <video
+                      src="/videos/UIUX-branding.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                      UI/UX & Branding
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                      From user flows to design systems, we craft intuitive UI/UX and modern
+                      branding that elevate your digital presence.
+                    </p>
+                    
+                    {/* Icons Grid */}
+                    <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
+                      <FaFigma size={32} className="text-slate-500" title="Figma" />
+                      <SiFramer size={32} className="text-[#0055FF]" title="Framer" />
+                      <TbBrandAdobePhotoshop size={32} className="text-[#31A8FF]" title="Photoshop" />
+                      <TbBrandAdobeXd size={32} className="text-[#FF2BC2]" title="Adobe XD" />
+                      <TbBrandAdobe size={32} className="text-[#FF0000]" title="Adobe" />
+                    </div>
                   </div>
                 </div>
+              )}
+
+              {active === 4 && (
                 <div>
-                  <FloatingIcons distance={25} duration={3}>
-                    <TbBrandReactNative size={40} className="text-sky-700" />
-                    <FaNodeJs size={40} className="text-yellow-400" />
-                    <SiTailwindcss size={40} className="text-cyan-500" />
-                    <TbBrandAndroid size={40} className="text-green-500" />
-                    <FaAppStoreIos size={40} className="text-sky-500" />
-                  </FloatingIcons>
-                </div>
-              </div>
-            </div>}
-            {active === 3 && <div className=" h-[90%]">
-              <div className="flex flex-col justify-between pb-10 h-[100%]">
-                <div>
-                  <span className="font-bold text-2xl leading-10"> UI/UX & Branding</span>
-                  <div className="text-justify">
-                    {/* <span className="text-md">Pixel-perfect design systems and brand identity that stand out.</span> */}
-                    <span className="text-md text-slate-300"> From user flows to design systems, we craft intuitive UI/UX and modern branding that elevate your digital presence and build trust with your audience.</span>
+                  {/* Video Section */}
+                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                    <video
+                      src="/videos/socila-media.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                      Social Media Marketing
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                      We manage your social presence with creative content, ads, and
+                      growth-focused strategies to help your brand grow.
+                    </p>
+                    
+                    {/* Icons Grid */}
+                    <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
+                      <FaWhatsapp size={32} className="text-green-500" title="WhatsApp" />
+                      <FaFacebook size={32} className="text-blue-500" title="Facebook" />
+                      <FaInstagram size={32} className="text-neutral-400" title="Instagram" />
+                    </div>
                   </div>
                 </div>
+              )}
+
+              {active === 5 && (
                 <div>
-                  <FloatingIcons distance={25} duration={3}>
-                    <FaFigma size={40} className="text-slate-500" />
-                    <SiFramer size={40} className="text-[#0055FF]" />
-                    <TbBrandAdobePhotoshop size={40} className="text-[#31A8FF]" />
-                    <TbBrandAdobeXd size={40} className="text-[#FF2BC2]" />
-                    <TbBrandAdobe size={40} className="text-[#FF0000]" />
-                  </FloatingIcons>
-                </div>
-              </div>
-            </div>}
-            {active === 4 && <div className=" h-[90%]">
-              <div className="flex flex-col justify-between pb-10 h-[100%]">
-                <div>
-                  <span className="font-bold text-2xl leading-10">Social Media Marketing</span>
-                  <div className="text-justify">
-                    {/* <span className="text-md">Growth-focused marketing that builds visibility and drives engagement.</span> */}
-                    <span className="text-md text-slate-300"> We manage your social presence with creative content, performance campaigns, and strategy-driven execution to help your brand grow consistently.</span>
+                  {/* Video Section */}
+                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                    <video
+                      src="/videos/dashboard.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                      AI & Automation
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                      We build AI assistants, chatbot systems, and automation workflows
+                      using modern AI APIs to reduce manual work and scale operations.
+                    </p>
+                    
+                    {/* Icons Grid */}
+                    <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
+                      <TbBrandPython size={32} className="text-white" title="Python" />
+                      <SiLangchain size={32} className="text-lime-300" title="LangChain" />
+                      <SiOpenai size={32} className="text-white" title="OpenAI" />
+                      <TbAutomation size={32} className="text-sky-800" title="Automation" />
+                      <SiJupyter size={32} className="text-amber-500" title="Jupyter" />
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <FloatingIcons distance={25} duration={3}>
-                    <FaWhatsapp size={40} className="text-green-500" />
-                    <FaFacebook size={40} className="text-blue-500" />
-                    <FaInstagram size={40} className="text-neutral-400" />
-                  </FloatingIcons>
-                </div>
-              </div>
-            </div>}
-            {active === 5 && <div className=" h-[90%]">
-              <div className="flex flex-col justify-between pb-10 h-[100%]">
-                <div>
-                  <span className="font-bold text-2xl leading-10">AI & Automation</span>
-                  <div className="text-justify">
-                    {/* <span className="text-md">Intelligent solutions that optimize workflows and save time.</span> */}
-                    <span className="text-md text-slate-300"> We create AI assistants, chatbot systems, and automation workflows using modern AI APIs — helping businesses reduce manual work and scale efficiently.</span>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation Dots - Bottom */}
+        <div className="flex justify-center gap-2 mt-6">
+          {[1, 2, 3, 4, 5].map((num) => (
+            <button
+              key={num}
+              onClick={() => setActive(num)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                active === num ? 'w-8 bg-blue-500' : 'w-2 bg-slate-600'
+              }`}
+              aria-label={`Go to service ${num}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Two-Column Layout */}
+      <div className="hidden md:block mx-auto max-w-6xl">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+
+          {/* LEFT SIDE - Desktop */}
+          <aside className="md:sticky md:top-24 h-fit">
+            <div className="flex flex-col pb-6 md:pb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold">Our Services</h2>
+              <p className="text-sm sm:text-base text-slate-400 mt-2">
+                Fast, scalable, and user-friendly applications built with modern tech.
+              </p>
+            </div>
+
+            {/* Desktop Animated Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="h-[80vh]"
+              >
+                {active === 1 && (
+                  <div className="h-full">
+                    <div className="flex flex-col justify-between pb-10 h-full">
+                      <div>
+                        <h3 className="font-bold text-2xl leading-10">
+                          Web Apps & Dashboards
+                        </h3>
+                        <p className="text-justify text-base text-slate-300 mt-3">
+                          We develop responsive apps and internal dashboards using clean APIs,
+                          secure architecture, and best-in-class frontend frameworks —
+                          tailored for startups and enterprises.
+                        </p>
+                      </div>
+                      <div>
+                        <FloatingIcons distance={20} duration={3}>
+                          <FaReact size={40} className="text-blue-400" />
+                          <SiNextdotjs size={40} className="text-white" />
+                          <SiAngular size={40} className="text-rose-600" />
+                          <SiTailwindcss size={40} className="text-cyan-500" />
+                          <FaNodeJs size={40} className="text-yellow-400" />
+                          <SiExpress size={40} className="text-slate-500" />
+                          <SiMongodb size={40} className="text-green-600" />
+                        </FloatingIcons>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <FloatingIcons distance={25} duration={3}>
-                    <TbBrandPython size={40} className="text-white-500" />
-                    <SiLangchain size={40} className="text-lime-300" />
-                    <SiOpenai size={40} className="text-white-500" />
-                    <TbAutomation size={40} className="text-sky-800" />
-                    <SiJupyter size={40} className="text-amber-500" />
-                  </FloatingIcons>
-                </div>
-              </div>
-            </div>}
+                )}
+
+                {active === 2 && (
+                  <div className="h-full">
+                    <div className="flex flex-col justify-between pb-10 h-full">
+                      <div>
+                        <h3 className="font-bold text-2xl leading-10">
+                          Mobile App Development
+                        </h3>
+                        <p className="text-justify text-base text-slate-300 mt-3">
+                          We build high-quality mobile apps for Android & iOS using a shared
+                          codebase — ensuring fast delivery, smooth performance, and scalable
+                          architecture.
+                        </p>
+                      </div>
+                      <div>
+                        <FloatingIcons distance={20} duration={3}>
+                          <TbBrandReactNative size={40} className="text-sky-700" />
+                          <FaNodeJs size={40} className="text-yellow-400" />
+                          <SiTailwindcss size={40} className="text-cyan-500" />
+                          <TbBrandAndroid size={40} className="text-green-500" />
+                          <FaAppStoreIos size={40} className="text-sky-500" />
+                        </FloatingIcons>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {active === 3 && (
+                  <div className="h-full">
+                    <div className="flex flex-col justify-between pb-10 h-full">
+                      <div>
+                        <h3 className="font-bold text-2xl leading-10">
+                          UI/UX & Branding
+                        </h3>
+                        <p className="text-justify text-base text-slate-300 mt-3">
+                          From user flows to design systems, we craft intuitive UI/UX and modern
+                          branding that elevate your digital presence.
+                        </p>
+                      </div>
+                      <div>
+                        <FloatingIcons distance={20} duration={3}>
+                          <FaFigma size={40} className="text-slate-500" />
+                          <SiFramer size={40} className="text-[#0055FF]" />
+                          <TbBrandAdobePhotoshop size={40} className="text-[#31A8FF]" />
+                          <TbBrandAdobeXd size={40} className="text-[#FF2BC2]" />
+                          <TbBrandAdobe size={40} className="text-[#FF0000]" />
+                        </FloatingIcons>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {active === 4 && (
+                  <div className="h-full">
+                    <div className="flex flex-col justify-between pb-10 h-full">
+                      <div>
+                        <h3 className="font-bold text-2xl leading-10">
+                          Social Media Marketing
+                        </h3>
+                        <p className="text-justify text-base text-slate-300 mt-3">
+                          We manage your social presence with creative content, ads, and
+                          growth-focused strategies to help your brand grow.
+                        </p>
+                      </div>
+                      <div>
+                        <FloatingIcons distance={20} duration={3}>
+                          <FaWhatsapp size={40} className="text-green-500" />
+                          <FaFacebook size={40} className="text-blue-500" />
+                          <FaInstagram size={40} className="text-neutral-400" />
+                        </FloatingIcons>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {active === 5 && (
+                  <div className="h-full">
+                    <div className="flex flex-col justify-between pb-10 h-full">
+                      <div>
+                        <h3 className="font-bold text-2xl leading-10">
+                          AI & Automation
+                        </h3>
+                        <p className="text-justify text-base text-slate-300 mt-3">
+                          We build AI assistants, chatbot systems, and automation workflows
+                          using modern AI APIs to reduce manual work and scale operations.
+                        </p>
+                      </div>
+                      <div>
+                        <FloatingIcons distance={20} duration={3}>
+                          <TbBrandPython size={40} className="text-white" />
+                          <SiLangchain size={40} className="text-lime-300" />
+                          <SiOpenai size={40} className="text-white" />
+                          <TbAutomation size={40} className="text-sky-800" />
+                          <SiJupyter size={40} className="text-amber-500" />
+                        </FloatingIcons>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </aside>
+
+          {/* RIGHT SIDE - Desktop Videos */}
+          <div className="flex flex-col gap-32">
+
+          <motion.div
+            ref={t1}
+            variants={videoVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+          >
+            <video
+              src="/videos/dashboard.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
           </motion.div>
-        </aside>
 
-        {/* RIGHT SIDE */}
-        <div className="relative">
+          <motion.div
+            ref={t2}
+            variants={videoVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+          >
+            <video
+              src="/videos/mobile.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
-          {/* FIXED HEIGHT */}
-          <div className="sticky top-24 h-[80vh]">
+          <motion.div
+            ref={t3}
+            variants={videoVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+          >
+            <video
+              src="/videos/UIUX-branding.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
-            {/* CARD 1 */}
-            <motion.div
-              className="absolute inset-0 bg-white/20 backdrop-blur-[40px] rounded-3xl flex items-center justify-center text-3xl font-bold h-[80vh]"
-              style={{ zIndex: active === 1 ? 10 : 1 }}
-              animate={{ y: getY(1, active) }}
-              initial={{ y: 750 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              Card 1
-            </motion.div>
+          <motion.div
+            ref={t4}
+            variants={videoVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+          >
+            <video
+              src="/videos/socila-media.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
-            {/* CARD 2 */}
-            <motion.div
-              className="absolute inset-0 bg-white/20 backdrop-blur-[40px]  rounded-3xl flex items-center justify-center text-3xl font-bold h-[80vh]"
-              style={{ zIndex: active === 2 ? 10 : 2 }}
-              animate={{ y: getY(2, active) }}
-              initial={{ y: 750 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              Card 2
-            </motion.div>
-
-            {/* CARD 3 */}
-            <motion.div
-              className="absolute inset-0 bg-white/20 backdrop-blur-[40px]  rounded-3xl flex items-center justify-center text-3xl font-bold h-[80vh]"
-              style={{ zIndex: active === 3 ? 10 : 3 }}
-              animate={{ y: getY(3, active) }}
-              initial={{ y: 750 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              Card 3
-            </motion.div>
-
-            {/* CARD 4 */}
-            <motion.div
-              className="absolute inset-0 bg-white/20 backdrop-blur-[40px]  rounded-3xl flex items-center justify-center text-3xl font-bold h-[80vh]"
-              style={{ zIndex: active === 4 ? 10 : 4 }}
-              animate={{ y: getY(4, active) }}
-              initial={{ y: 750 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              Card 4
-            </motion.div>
-
-            {/* CARD 5 */}
-            <motion.div
-              className="absolute inset-0 bg-white/20 backdrop-blur-[40px] rounded-3xl flex items-center justify-center text-3xl font-bold h-[80vh]"
-              style={{ zIndex: active === 5 ? 10 : 5 }}
-              animate={{ y: getY(5, active) }}
-              initial={{ y: 750 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              Card 5
-            </motion.div>
+          <motion.div
+            ref={t5}
+            variants={videoVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+          >
+            <video
+              src="/videos/dashboard.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
           </div>
-
-          {/* FIXED SPACING */}
-          <div className="space-y-[80vh]">
-            <div ref={t1} className="h-[80vh]" />
-            <div ref={t2} className="h-[80vh]" />
-            <div ref={t3} className="h-[80vh]" />
-            <div ref={t4} className="h-[80vh]" />
-            <div ref={t5} className="h-[80vh]" />
-          </div>
-
         </div>
       </div>
     </div>

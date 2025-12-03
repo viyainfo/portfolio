@@ -85,11 +85,6 @@ export function Contact() {
               <span>Send project brief</span>
               <ArrowRight className="h-4 w-4" />
             </button>
-            <p className="text-[11px] text-slate-500">
-              This form is static right now. You can hook it to{" "}
-              <span className="text-slate-300">Formspree, Resend, or your own API</span>{" "}
-              to receive submissions.
-            </p>
           </form>
 
           <div className="space-y-4 text-sm">
