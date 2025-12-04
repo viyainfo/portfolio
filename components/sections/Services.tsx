@@ -107,12 +107,12 @@ const videoVariant = {
 };
 
   return (
-    <div className="text-white py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6">
+    <div className="text-white py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
       {/* Mobile Card Slider */}
-      <div className="md:hidden mb-12">
+      <div className="md:hidden mb-16">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold">Our Services</h2>
-          <p className="text-sm sm:text-base text-slate-400 mt-2">
+          <p className="text-base sm:text-lg text-slate-400 mt-3 max-w-2xl mx-auto">
             Fast, scalable, and user-friendly applications built with modern tech.
           </p>
         </div>
@@ -136,7 +136,7 @@ const videoVariant = {
               {active === 1 && (
                 <div>
                   {/* Video Section */}
-                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                  <div className="relative h-[220px] sm:h-[280px] bg-black">
                     <video
                       src="/videos/dashboard.mp4"
                       autoPlay
@@ -148,11 +148,11 @@ const videoVariant = {
                   </div>
                   
                   {/* Content Section */}
-                  <div className="p-6">
-                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
                       Web Apps & Dashboards
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
                       We develop responsive apps and internal dashboards using clean APIs,
                       secure architecture, and best-in-class frontend frameworks —
                       tailored for startups and enterprises.
@@ -175,7 +175,7 @@ const videoVariant = {
               {active === 2 && (
                 <div>
                   {/* Video Section */}
-                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                  <div className="relative h-[220px] sm:h-[280px] bg-black">
                     <video
                       src="/videos/mobile.mp4"
                       autoPlay
@@ -187,11 +187,11 @@ const videoVariant = {
                   </div>
                   
                   {/* Content Section */}
-                  <div className="p-6">
-                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
                       Mobile App Development
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
                       We build high-quality mobile apps for Android & iOS using a shared
                       codebase — ensuring fast delivery, smooth performance, and scalable
                       architecture.
@@ -212,7 +212,7 @@ const videoVariant = {
               {active === 3 && (
                 <div>
                   {/* Video Section */}
-                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                  <div className="relative h-[220px] sm:h-[280px] bg-black">
                     <video
                       src="/videos/UIUX-branding.mp4"
                       autoPlay
@@ -224,11 +224,11 @@ const videoVariant = {
                   </div>
                   
                   {/* Content Section */}
-                  <div className="p-6">
-                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
                       UI/UX & Branding
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
                       From user flows to design systems, we craft intuitive UI/UX and modern
                       branding that elevate your digital presence.
                     </p>
@@ -248,7 +248,7 @@ const videoVariant = {
               {active === 4 && (
                 <div>
                   {/* Video Section */}
-                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                  <div className="relative h-[220px] sm:h-[280px] bg-black">
                     <video
                       src="/videos/socila-media.mp4"
                       autoPlay
@@ -260,11 +260,11 @@ const videoVariant = {
                   </div>
                   
                   {/* Content Section */}
-                  <div className="p-6">
-                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
                       Social Media Marketing
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
                       We manage your social presence with creative content, ads, and
                       growth-focused strategies to help your brand grow.
                     </p>
@@ -282,7 +282,7 @@ const videoVariant = {
               {active === 5 && (
                 <div>
                   {/* Video Section */}
-                  <div className="relative h-[250px] sm:h-[300px] bg-black">
+                  <div className="relative h-[220px] sm:h-[280px] bg-black">
                     <video
                       src="/videos/dashboard.mp4"
                       autoPlay
@@ -294,11 +294,11 @@ const videoVariant = {
                   </div>
                   
                   {/* Content Section */}
-                  <div className="p-6">
-                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
                       AI & Automation
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
                       We build AI assistants, chatbot systems, and automation workflows
                       using modern AI APIs to reduce manual work and scale operations.
                     </p>
@@ -340,8 +340,8 @@ const videoVariant = {
           {/* LEFT SIDE - Desktop */}
           <aside className="md:sticky md:top-24 h-fit">
             <div className="flex flex-col pb-6 md:pb-8">
-              <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold">Our Services</h2>
-              <p className="text-sm sm:text-base text-slate-400 mt-2">
+              <h2 className="text-3xl sm:text-4xl font-bold">Our Services</h2>
+              <p className="text-base sm:text-lg text-slate-400 mt-3 leading-relaxed">
                 Fast, scalable, and user-friendly applications built with modern tech.
               </p>
             </div>
@@ -354,16 +354,16 @@ const videoVariant = {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="h-[80vh]"
+                className="h-auto"
               >
                 {active === 1 && (
-                  <div className="h-full">
-                    <div className="flex flex-col justify-between pb-10 h-full">
+                  <div className="h-[350]">
+                    <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl leading-10">
+                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
                           Web Apps & Dashboards
                         </h3>
-                        <p className="text-justify text-base text-slate-300 mt-3">
+                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
                           We develop responsive apps and internal dashboards using clean APIs,
                           secure architecture, and best-in-class frontend frameworks —
                           tailored for startups and enterprises.
@@ -385,13 +385,13 @@ const videoVariant = {
                 )}
 
                 {active === 2 && (
-                  <div className="h-full">
-                    <div className="flex flex-col justify-between pb-10 h-full">
+                  <div className="h-[350]">
+                    <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl leading-10">
+                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
                           Mobile App Development
                         </h3>
-                        <p className="text-justify text-base text-slate-300 mt-3">
+                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
                           We build high-quality mobile apps for Android & iOS using a shared
                           codebase — ensuring fast delivery, smooth performance, and scalable
                           architecture.
@@ -411,13 +411,13 @@ const videoVariant = {
                 )}
 
                 {active === 3 && (
-                  <div className="h-full">
-                    <div className="flex flex-col justify-between pb-10 h-full">
+                  <div className="h-[350]">
+                    <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl leading-10">
+                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
                           UI/UX & Branding
                         </h3>
-                        <p className="text-justify text-base text-slate-300 mt-3">
+                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
                           From user flows to design systems, we craft intuitive UI/UX and modern
                           branding that elevate your digital presence.
                         </p>
@@ -436,13 +436,13 @@ const videoVariant = {
                 )}
 
                 {active === 4 && (
-                  <div className="h-full">
-                    <div className="flex flex-col justify-between pb-10 h-full">
+                  <div className="h-[350]">
+                    <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl leading-10">
+                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
                           Social Media Marketing
                         </h3>
-                        <p className="text-justify text-base text-slate-300 mt-3">
+                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
                           We manage your social presence with creative content, ads, and
                           growth-focused strategies to help your brand grow.
                         </p>
@@ -459,13 +459,13 @@ const videoVariant = {
                 )}
 
                 {active === 5 && (
-                  <div className="h-full">
-                    <div className="flex flex-col justify-between pb-10 h-full">
+                  <div className="h-[350]">
+                    <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl leading-10">
+                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
                           AI & Automation
                         </h3>
-                        <p className="text-justify text-base text-slate-300 mt-3">
+                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
                           We build AI assistants, chatbot systems, and automation workflows
                           using modern AI APIs to reduce manual work and scale operations.
                         </p>
@@ -487,15 +487,15 @@ const videoVariant = {
           </aside>
 
           {/* RIGHT SIDE - Desktop Videos */}
-          <div className="flex flex-col gap-32">
+          <div className="flex flex-col gap-24 lg:gap-32">
 
           <motion.div
             ref={t1}
             variants={videoVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.4 }}
-            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
           >
             <video
               src="/videos/dashboard.mp4"
@@ -510,10 +510,10 @@ const videoVariant = {
           <motion.div
             ref={t2}
             variants={videoVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.4 }}
-            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
           >
             <video
               src="/videos/mobile.mp4"
@@ -528,10 +528,10 @@ const videoVariant = {
           <motion.div
             ref={t3}
             variants={videoVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.4 }}
-            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
           >
             <video
               src="/videos/UIUX-branding.mp4"
@@ -546,10 +546,10 @@ const videoVariant = {
           <motion.div
             ref={t4}
             variants={videoVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.4 }}
-            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
           >
             <video
               src="/videos/socila-media.mp4"
@@ -564,10 +564,10 @@ const videoVariant = {
           <motion.div
             ref={t5}
             variants={videoVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.4 }}
-            className="rounded-3xl overflow-hidden h-[80vh] bg-black"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
           >
             <video
               src="/videos/dashboard.mp4"

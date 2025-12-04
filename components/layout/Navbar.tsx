@@ -11,7 +11,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 inset-x-0 z-30 backdrop-blur-xl border-b border-slate-800/60 bg-slate-950/70">
+    <header className="fixed top-0 inset-x-0 z-99 backdrop-blur-xl border-b border-slate-800/60 bg-slate-950/70">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-0 py-5">
         {/* Logo */}
         <a href="#top" className="flex items-center gap-2">

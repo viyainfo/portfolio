@@ -1,137 +1,133 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Section } from "@/components/layout/Section";
-import { fadeUp, staggerContainer } from "@/lib/motion";
 
 export function Contact() {
   return (
-    <Section id="contact">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeUp} custom={0} className="mb-8">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-50">
-            Tell us about your next project.
-          </h2>
-          <p className="mt-2 text-sm text-slate-400 max-w-xl">
-            Share a short brief and we&apos;ll respond with next steps, a rough
-            timeline, and the best plan for your budget.
-          </p>
-        </motion.div>
+    <Section id="contact" className="relative overflow-hidden">
+      {/* Decorative Background Shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 -left-20 w-96 h-96 bg-gradient-to-br from-violet-500/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-gradient-to-br from-fuchsia-500/10 to-transparent rounded-full blur-3xl" />
+      </div>
 
+      <div className="relative grid lg:grid-cols-2 gap-12 lg:gap-16">
+        {/* Left Column - Company Introduction */}
         <motion.div
-          variants={fadeUp}
-          custom={0.12}
-          animate="visible"
-          className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col"
         >
-          <form className="space-y-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5 text-sm">
-                <label className="text-slate-200">Name</label>
-                <input
-                  className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-fuchsia-500/70"
-                  placeholder="Your name"
-                  type="text"
-                />
-              </div>
-              <div className="space-y-1.5 text-sm">
-                <label className="text-slate-200">Email</label>
-                <input
-                  className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-fuchsia-500/70"
-                  placeholder="you@company.com"
-                  type="email"
-                />
-              </div>
-            </div>
-            <div className="space-y-1.5 text-sm">
-              <label className="text-slate-200">What do you want to build?</label>
-              <textarea
-                className="min-h-[120px] w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-fuchsia-500/70"
-                placeholder="Short description of your idea, current status, and any deadlines."
-              />
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5 text-sm">
-                <label className="text-slate-200">Budget range</label>
-                <select className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-100 outline-none focus:border-fuchsia-500/70">
-                  <option value="">Select an option</option>
-                  <option value="under-25k">Under ₹25,000</option>
-                  <option value="25-75k">₹25,000 – ₹75,000</option>
-                  <option value="75k-1.5l">₹75,000 – ₹1.5L</option>
-                  <option value="above-1.5l">Above ₹1.5L</option>
-                </select>
-              </div>
-              <div className="space-y-1.5 text-sm">
-                <label className="text-slate-200">Timeline</label>
-                <select className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-100 outline-none focus:border-fuchsia-500/70">
-                  <option value="">Select an option</option>
-                  <option value="asap">ASAP</option>
-                  <option value="1month">Within 1 month</option>
-                  <option value="3months">Within 3 months</option>
-                  <option value="flexible">Flexible</option>
-                </select>
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 px-5 py-2.5 text-xs sm:text-sm font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/40 hover:brightness-110 active:scale-[0.98] transition-all"
-            >
-              <span>Send project brief</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </form>
+          <p className="text-sm text-orange-500 mb-4">&#123; Get in touch &#125;</p>
+          
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-5">
+            LET&apos;S START YOUR PROJECT TODAY
+          </h2>
 
-          <div className="space-y-4 text-sm">
-            <div className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4">
-              <h3 className="text-sm font-semibold text-slate-100 mb-2">
-                Direct contact
-              </h3>
-              <div className="space-y-2 text-xs sm:text-sm text-slate-300">
-                <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-fuchsia-400" />
-                  <span>viyainfotechsolution@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-fuchsia-400" />
-                  <span>+91 · 9353726228</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-fuchsia-400" />
-                  <span>Remote · India</span>
+          {/* Profile Card */}
+          <div className="flex items-start gap-4 p-6 rounded-2xl bg-slate-900/50 backdrop-blur-sm border border-slate-800/50">
+            {/* Profile Image */}
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-fuchsia-500 to-cyan-500 p-0.5">
+                <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-slate-100">V</span>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4">
-              <h3 className="text-sm font-semibold text-slate-100 mb-2">
-                Social & code
-              </h3>
-              <div className="flex gap-3 text-xs text-slate-300">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1.5 hover:border-fuchsia-500/60 transition"
-                >
-                  <Github className="h-3.5 w-3.5" />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1.5 hover:border-fuchsia-500/60 transition"
-                >
-                  <Linkedin className="h-3.5 w-3.5" />
-                  <span>LinkedIn</span>
-                </a>
-              </div>
+            {/* Profile Info */}
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold text-slate-100">ViyaInfo Team</h3>
+              <p className="text-sm text-slate-400 mb-3">CEO & Founder</p>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                At ViyaInfo, we believe in building meaningful digital experiences. 
+                If you ever have questions or need guidance, we&apos;re always here to support you. 
+                Your success is our mission — let&apos;s create something incredible together.
+              </p>
             </div>
           </div>
         </motion.div>
-      </motion.div>
+
+        {/* Right Column - Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <form className="space-y-6">
+            {/* Name and Email in One Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Name Field */}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="John Smith"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
+                />
+              </div>
+
+              {/* Email Field */}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  placeholder="johnsmith@gmail.com"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
+                />
+              </div>
+            </div>
+
+            {/* Service Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                Service Needed?
+              </label>
+              <div className="relative">
+                <select className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all appearance-none cursor-pointer">
+                  <option value="">Select a service</option>
+                  <option value="branding">Branding</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="mobile-app">Mobile App Development</option>
+                  <option value="ui-ux">UI/UX Design</option>
+                  <option value="digital-marketing">Digital Marketing</option>
+                  <option value="ai-automation">AI & Automation</option>
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Message Textarea */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                What Can I Help You...
+              </label>
+              <textarea
+                rows={6}
+                placeholder="Hello, I'd like to enquire about..."
+                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all resize-none"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full px-6 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30 active:scale-[0.98]"
+            >
+              Submit
+            </button>
+          </form>
+        </motion.div>
+      </div>
     </Section>
   );
 }

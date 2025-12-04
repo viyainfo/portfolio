@@ -11,18 +11,19 @@ import { Projects } from "@/components/sections/Projects";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
-import { LogosStrip } from "@/components/sections/LogosStrip";
+import { Teams } from "@/components/sections/Teams";
 
 export default function Home() {
   return (
     <AppBackground>
       <Navbar />
-      <main className="pt-20 sm:pt-24">
+      <main className="pt-16 sm:pt-20">
         <Hero />
         <Services />
         <Process />
         <Projects />
         <Testimonials />
+        <Teams />
         <FAQ />
         <Contact />
       </main>

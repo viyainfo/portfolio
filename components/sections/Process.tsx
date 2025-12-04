@@ -126,11 +126,11 @@ export function Process() {
         {/* LEFT COLUMN - Sticky Title & Animated Image */}
         <div className={`self-start transition-all duration-300 ${isSticky ? 'lg:sticky lg:top-24' : 'lg:relative'}`}>
           <div>
-            <div className="mb-8 lg:mb-12">
+            <div className="mb-6 lg:mb-8">
               <p className="text-sm sm:text-base text-slate-400 mb-2">
                 &#123; How We Work &#125; - Active: {activeStep}
               </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
                 STRATEGIC STEPS TO
                 <br />
                 IMPACTFUL RESULTS
@@ -142,20 +142,20 @@ export function Process() {
               <div
                 className={`relative rounded-3xl overflow-hidden bg-gradient-to-br ${
                   steps[activeStep - 1]?.color || 'from-orange-400 to-orange-500'
-                } p-8 sm:p-10 lg:p-12 shadow-2xl transition-all duration-500`}
+                } p-6 sm:p-8 shadow-2xl transition-all duration-500`}
               >
-                  <div className="w-full min-h-[300px] sm:min-h-[400px]" style={{ paddingBottom: '75%', position: 'relative' }}>
+                  <div className="w-full h-[300px] sm:h-[350px] lg:h-[300px]" style={{ position: 'relative' }}>
                     {/* Add your images here based on step: */}
                     {/* <Image src={`/images/process-step-${activeStep}.jpg`} alt={steps[activeStep - 1].title} fill className="object-cover rounded-2xl" /> */}
                     
                     {/* Dynamic Placeholder */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center overflow-hidden">
                       {/* Decorative Elements */}
-                      <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-2xl" />
-                      <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
+                      <div className="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
+                      <div className="absolute bottom-10 right-10 w-36 h-36 bg-white/10 rounded-full blur-3xl" />
                       
                       <div className="text-center text-white z-10 relative">
-                        <div className="text-7xl sm:text-8xl mb-4 transition-all duration-300">
+                        <div className="text-6xl sm:text-7xl mb-4 transition-all duration-300">
                           {steps[activeStep - 1]?.icon || '💡'}
                         </div>
                         <p className="text-xl sm:text-2xl font-bold">
@@ -173,8 +173,8 @@ export function Process() {
         </div>
 
         {/* RIGHT COLUMN - Steps with Animated Timeline */}
-        <div className="relative pb-32 lg:pb-96">
-          <div className="space-y-16 lg:space-y-32">
+        <div className="relative pb-20 lg:pb-40">
+          <div className="space-y-12 lg:space-y-24">
             {steps.map((step, idx) => {
               const isActive = activeStep === idx + 1;
               const isPassed = activeStep > idx + 1;
@@ -189,14 +189,14 @@ export function Process() {
                   <div className="relative flex flex-col items-center">
                     {/* Number Circle - Animated */}
                     <div 
-                      className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center z-10 relative border-4 transition-all duration-500"
+                      className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center z-10 relative border-4 transition-all duration-500"
                       style={{
                         backgroundColor: isActive || isPassed ? "rgb(249, 115, 22)" : "rgb(15, 23, 42)",
                         borderColor: isActive || isPassed ? "rgb(249, 115, 22)" : "rgb(71, 85, 105)",
                       }}
                     >
                       <span 
-                        className="text-2xl font-bold relative z-10 transition-colors duration-500"
+                        className="text-xl font-bold relative z-10 transition-colors duration-500"
                         style={{
                           color: isActive || isPassed ? "rgb(255, 255, 255)" : "rgb(148, 163, 184)",
                         }}
@@ -244,7 +244,7 @@ export function Process() {
           </div>
           
           {/* End trigger - invisible element to detect when scrolled past step 5 */}
-          <div ref={endTriggerRef} className="h-96" />
+          <div ref={endTriggerRef} className="h-20" />
         </div>
       </div>
     </Section>

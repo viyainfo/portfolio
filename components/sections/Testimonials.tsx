@@ -28,7 +28,7 @@ export function Testimonials() {
     <Section className="">
       <div className="space-y-12 overflow-hidden">
         <div className="mb-20 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white flex justify-center items-center gap-2">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight flex justify-center items-center gap-2">
             <span>
               Why Choose
             </span>
@@ -41,7 +41,7 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="grid gap-2  lg:grid-cols-3 items-end max-w-6xl mx-auto px-4">
+        <div className="grid gap-2 lg:grid-cols-3 items-end max-w-6xl mx-auto px-4">
           {testimonials.map((item, idx) => (
             <div
               key={item.title}
