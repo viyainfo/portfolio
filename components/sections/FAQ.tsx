@@ -10,36 +10,44 @@ export function FAQ() {
 
   const faqs = [
     {
-      q: "What is included in your branding services?",
-      a: "Our branding services include logo design, brand guidelines, color palettes, typography selection, and brand strategy to create a cohesive identity.",
+      q: "What services does Viyainfo provide?",
+      a: "We offer web development, mobile app development, UI/UX design, social media creatives, graphic design, and content writing.",
     },
     {
-      q: "How long does it take to complete a branding project?",
-      a: "Typically 4-6 weeks depending on project scope, revisions needed, and client feedback timeline. We work in sprints with regular check-ins.",
+      q: "How long does it take to complete a project?",
+      a: "Project duration depends on complexity, but most websites/apps are delivered within 2–6 weeks.",
     },
     {
-      q: "Do you offer mobile-friendly designs?",
-      a: "Yes, all our designs are fully responsive and optimized for mobile, tablet, and desktop devices with modern best practices.",
+      q: "Do you offer post-launch support?",
+      a: "Yes, we provide complete maintenance, updates, and support after project delivery.",
     },
     {
-      q: "Can you redesign an existing website?",
-      a: "Absolutely. We specialize in website redesigns, modernizing outdated sites while preserving what works and improving user experience.",
+      q: "What technologies do you use?",
+      a: "React, Next.js, Angular, Node.js, MongoDB, MySQL, React Native, AWS, and more.",
     },
     {
-      q: "Do you provide custom development solutions?",
-      a: "Yes, we build custom web apps, dashboards, and digital products tailored to your specific business needs using modern tech stacks.",
+      q: "Can you redesign my existing website?",
+      a: "Absolutely — we can revamp your design, improve performance, and upgrade technology.",
     },
     {
-      q: "Will I be able to update the website on my own?",
-      a: "Yes, we can integrate a CMS like WordPress, Contentful, or Sanity so you can easily update content without coding knowledge.",
+      q: "Do you develop mobile apps for both iOS and Android?",
+      a: "Yes, we develop cross-platform mobile apps using React Native that work on both iOS and Android, saving time and cost.",
     },
     {
-      q: "How do you approach digital marketing campaigns?",
-      a: "We start with strategy and goals, then execute through SEO, content marketing, social media, and paid ads with regular performance tracking.",
+      q: "What is included in your UI/UX design service?",
+      a: "Our UI/UX design includes user research, wireframing, prototyping, visual design, user testing, and design system creation for consistent brand experience.",
     },
     {
-      q: "Can you track the performance of marketing campaigns?",
-      a: "Yes, we set up analytics dashboards to track KPIs, conversions, traffic sources, and ROI with detailed monthly reports.",
+      q: "Are your websites mobile-responsive?",
+      a: "Absolutely! All our websites are fully responsive and optimized for mobile, tablet, and desktop devices with modern best practices.",
+    },
+    {
+      q: "How does the design revision process work?",
+      a: "We include multiple revision rounds in our packages. You can provide feedback, and we'll refine the design until you're completely satisfied.",
+    },
+    {
+      q: "Do you handle website hosting and deployment?",
+      a: "Yes, we can set up hosting on AWS, Vercel, Netlify, or your preferred platform and handle the complete deployment process.",
     },
   ];
 
@@ -55,13 +63,10 @@ export function FAQ() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-sm text-fuchsia-400 mb-3">&#123; FAQ &#125;</p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-5">
-              CLEAR SOLUTIONS TO
-              <br />
-              YOUR CONCERNS
+              Frequently Asked Questions
             </h2>
-            
+
             {/* Decorative Card */}
             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 p-1">
               <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/20 to-cyan-500/20" />

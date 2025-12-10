@@ -22,11 +22,11 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="flex flex-col"
         >
-          <p className="text-sm text-orange-500 mb-4">&#123; Get in touch &#125;</p>
-          
+
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-5">
-            LET&apos;S START YOUR PROJECT TODAY
+            Let’s Build Something Amazing
           </h2>
+          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto pb-5">Have an idea or project in mind? Our team is ready to help you turn it into a powerful digital product.</p>
 
           {/* Profile Card */}
           <div className="flex items-start gap-4 p-6 rounded-2xl bg-slate-900/50 backdrop-blur-sm border border-slate-800/50">
@@ -44,8 +44,8 @@ export function Contact() {
               <h3 className="text-lg font-semibold text-slate-100">ViyaInfo Team</h3>
               <p className="text-sm text-slate-400 mb-3">CEO & Founder</p>
               <p className="text-sm text-slate-300 leading-relaxed">
-                At ViyaInfo, we believe in building meaningful digital experiences. 
-                If you ever have questions or need guidance, we&apos;re always here to support you. 
+                At ViyaInfo, we believe in building meaningful digital experiences.
+                If you ever have questions or need guidance, we&apos;re always here to support you.
                 Your success is our mission — let&apos;s create something incredible together.
               </p>
             </div>

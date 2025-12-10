@@ -7,19 +7,19 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 export function Teams() {
     const teamMembers = [
         {
-            name: "Michael Rivera",
+            name: "Pavan Kumar",
             role: "Founder, CEO",
             image: "/pav.png", // Placeholder
             bgColor: "from-blue-500/20 to-cyan-500/20",
         },
         {
-            name: "Emily Carter",
-            role: "managing director",
+            name: "Shameer",
+            role: "Managing Director",
             image: "/sham.png", // Placeholder
             bgColor: "from-violet-500/20 to-fuchsia-500/20",
         },
         {
-            name: "Sarah Johnson",
+            name: "Adlin Yona",
             role: "Designer Head",
             image: "/adln.png", // Placeholder
             bgColor: "from-orange-500/20 to-amber-500/20",
@@ -41,15 +41,13 @@ export function Teams() {
                     className="text-center mb-8"
                 >
                     <div className="inline-block">
-                        <p className="text-sm text-red-500 mb-2 px-4 py-1 rounded-full bg-red-500/10 border border-red-500/20">
-                            &#123; Meet Our Team &#125;
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                            Meet Our Team
+                        </h2>
+                        <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+                            A group of passionate professionals dedicated to building high-quality digital experiences.
                         </p>
                     </div>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                        CREATIVE PROFESSIONALS
-                        <br />
-                        AT YOUR SERVICE
-                    </h2>
                 </motion.div>
 
                 {/* Team Members Grid */}
@@ -78,7 +76,7 @@ export function Teams() {
 
                                         {/* Black Gradient Overlay - Initially visible, hidden on hover */}
                                         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 group-hover:opacity-0 transition-opacity duration-500" />
-                                        
+
                                         {/* Subtle lighting - visible on hover */}
                                         <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>

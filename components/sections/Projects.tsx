@@ -43,19 +43,21 @@ export function Projects() {
         {/* Container that holds both title and cards - limits sticky behavior */}
         <div className="relative" style={{ height: `${(projects.length * 480) + 200}px` }}>
           {/* Sticky Header - Stays visible during card animations, then scrolls with section */}
-          <div className="sticky top-20 z-50 bg-slate-950 py-4 mb-8">
+          <div className="sticky top-20 z-50 bg-slate-950 mb-8">
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                Projects that feel premium and perform.
-              </h2>
-              <p className="mt-2 text-sm text-slate-400 max-w-xl">
-                Real-world apps shipped for startups and internal teams.
-              </p>
-            </motion.div>
+                    variants={fadeUp}
+                    custom={0}
+                    className="text-center"
+                >
+                    <div className="inline-block">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                            Our Work
+                        </h2>
+                        <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+                           A glimpse of the digital solutions we’ve delivered for businesses across different industries.
+                        </p>
+                    </div>
+                </motion.div>
           </div>
 
           {/* Stacking Cards Container */}
@@ -121,7 +123,7 @@ export function Projects() {
 function ProjectCard({ project, index, total }: any) {
   const ref = useRef<HTMLDivElement>(null);
   const isLastCard = index === total - 1;
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -192,11 +194,11 @@ function ProjectCardContent({ project }: any) {
       <div className="relative h-[400px] rounded-[2rem] overflow-hidden bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 hover:border-slate-700 transition-all duration-500">
         {/* Gradient Background */}
         <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-100`} />
-        
+
         {/* Decorative Circles */}
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-white/10 to-transparent blur-3xl" />
         <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-gradient-to-tr from-white/10 to-transparent blur-3xl" />
-        
+
         {/* Content */}
         <div className="relative h-full flex flex-col p-8">
           {/* Badge */}
@@ -217,7 +219,7 @@ function ProjectCardContent({ project }: any) {
             <p className="text-xs text-slate-400 mb-6">
               {project.stack}
             </p>
-            
+
             {/* Arrow Button */}
             <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
               <ArrowUpRight className="h-5 w-5 text-white" />

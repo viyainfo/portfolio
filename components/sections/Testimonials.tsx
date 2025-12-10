@@ -7,20 +7,20 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 export function Testimonials() {
   const testimonials = [
     {
-      title: "Architecture Planning",
+      title: "Customer-First Approach",
       description:
-        "We define the technical blueprint: database schema, APIs, cloud setup, performance strategy.",
+        "Your business goals guide our decisions, ensuring solutions crafted around your needs.",
     },
     {
-      title: "Sprint-based Development",
+      title: "Experienced Team",
       description:
-        "Bi-weekly sprints with clear deliverables, demos, and progress updates.",
+        "Skilled developers, designers, and strategists with hands-on industry experience.",
       featured: true,
     },
     {
-      title: "Continuous Testing & Code Reviews",
+      title: "On-Time Delivery",
       description:
-        "Quality checks at every stage to ensure stable, maintainable code.",
+        "We follow a structured workflow to deliver projects on schedule without compromise.",
     },
   ];
 
@@ -37,7 +37,7 @@ export function Testimonials() {
             </span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-            A structured approach to deliver high-quality products on time
+            We combine creativity, technology, and strategy to deliver digital solutions that create real impact.
           </p>
         </div>
 
