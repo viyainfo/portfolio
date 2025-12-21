@@ -1,5 +1,5 @@
 export function Footer() {
-  const navLinks = ["Home", "About", "Services", "Projects", "FAQ", "Contact"];
+  const navLinks = ["Services", "Projects", "FAQ", "Contact"];
 
   return (
     <footer className="border-t border-slate-800/80 bg-slate-950/95 mt-16">

@@ -70,7 +70,7 @@ export function Contact() {
                 <input
                   type="text"
                   placeholder="John Smith"
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
                 />
               </div>
 
@@ -82,7 +82,7 @@ export function Contact() {
                 <input
                   type="email"
                   placeholder="johnsmith@gmail.com"
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
                 />
               </div>
             </div>
@@ -93,9 +93,8 @@ export function Contact() {
                 Service Needed?
               </label>
               <div className="relative">
-                <select className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all appearance-none cursor-pointer">
+                <select className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all appearance-none cursor-pointer">
                   <option value="">Select a service</option>
-                  <option value="branding">Branding</option>
                   <option value="web-development">Web Development</option>
                   <option value="mobile-app">Mobile App Development</option>
                   <option value="ui-ux">UI/UX Design</option>
@@ -114,14 +113,14 @@ export function Contact() {
               <textarea
                 rows={6}
                 placeholder="Hello, I'd like to enquire about..."
-                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all resize-none"
+                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all resize-none"
               />
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full px-6 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30 active:scale-[0.98]"
+              className="w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-fuchsia-500 hover:from-cyan-600 hover:to-fuchsia-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-500/30 active:scale-[0.98]"
             >
               Submit
             </button>

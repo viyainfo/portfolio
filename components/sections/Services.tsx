@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import FloatingIcons from "../ui/FloatingIcons";
 
 import {
@@ -82,43 +83,45 @@ export function Services() {
   };
 
   const parentVariant = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,   // each child animates after 150ms
-      delayChildren: 0.1
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,   // each child animates after 150ms
+        delayChildren: 0.1
+      }
     }
-  }
-};
+  };
 
-const videoVariant = {
-  hidden: {
-    opacity: 0,
-    y: 40
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as any
+  const videoVariant = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as any
+      }
     }
-  }
-};
+  };
 
   return (
-    <div className="text-white py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
+    <div id="services" className="text-white py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
       {/* Mobile Card Slider */}
       <div className="md:hidden mb-16">
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold">Our Services</h2>
-          <p className="text-base sm:text-lg text-slate-400 mt-3 max-w-2xl mx-auto">
+          <h2 className="text-[36px] font-bold">Our Services</h2>
+          <p className="text-[18px] text-slate-400 mt-3 max-w-2xl mx-auto">
             Fast, scalable, and user-friendly applications built with modern tech.
           </p>
         </div>
 
         {/* Swipeable Cards */}
-        <div 
+        <div
           className="overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -135,21 +138,24 @@ const videoVariant = {
             >
               {active === 1 && (
                 <div>
-                  {/* Video Section */}
-                  <div className="relative h-[220px] sm:h-[280px] bg-black">
-                    <video
-                      src="/videos/dashboard.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
+                  {/* Image Section */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    className="relative h-[220px] sm:h-[280px]"
+                  >
+                    <Image
+                      src="/images/dashboard.png"
+                      alt="Web Apps & Dashboards"
+                      fill
+                      className="object-contain"
                     />
-                  </div>
-                  
+                  </motion.div>
+
                   {/* Content Section */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
+                    <h3 className="font-semibold text-[24px] mb-4">
                       Web Apps & Dashboards
                     </h3>
                     <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
@@ -157,7 +163,7 @@ const videoVariant = {
                       secure architecture, and best-in-class frontend frameworks —
                       tailored for startups and enterprises.
                     </p>
-                    
+
                     {/* Icons Grid */}
                     <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
                       <FaReact size={32} className="text-blue-400" title="React" />
@@ -174,29 +180,32 @@ const videoVariant = {
 
               {active === 2 && (
                 <div>
-                  {/* Video Section */}
-                  <div className="relative h-[220px] sm:h-[280px] bg-black">
-                    <video
-                      src="/videos/mobile.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
+                  {/* Image Section */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="relative h-[220px] sm:h-[280px]"
+                  >
+                    <Image
+                      src="/images/mobile-app.png"
+                      alt="Mobile App Development"
+                      fill
+                      className="object-contain"
                     />
-                  </div>
-                  
+                  </motion.div>
+
                   {/* Content Section */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
+                    <h3 className="font-semibold text-[24px] mb-4">
                       Mobile App Development
                     </h3>
-                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+                    <p className="text-[18px] text-slate-300 leading-relaxed mb-6">
                       We build high-quality mobile apps for Android & iOS using a shared
                       codebase — ensuring fast delivery, smooth performance, and scalable
                       architecture.
                     </p>
-                    
+
                     {/* Icons Grid */}
                     <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
                       <TbBrandReactNative size={32} className="text-sky-700" title="React Native" />
@@ -211,28 +220,31 @@ const videoVariant = {
 
               {active === 3 && (
                 <div>
-                  {/* Video Section */}
-                  <div className="relative h-[220px] sm:h-[280px] bg-black">
-                    <video
-                      src="/videos/UIUX-branding.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
+                  {/* Image Section */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    className="relative h-[220px] sm:h-[280px]"
+                  >
+                    <Image
+                      src="/images/branding.png"
+                      alt="UI/UX & Branding"
+                      fill
+                      className="object-contain"
                     />
-                  </div>
-                  
+                  </motion.div>
+
                   {/* Content Section */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
+                    <h3 className="font-semibold text-[24px] mb-4">
                       UI/UX & Branding
                     </h3>
-                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+                    <p className="text-[18px] text-slate-300 leading-relaxed mb-6">
                       From user flows to design systems, we craft intuitive UI/UX and modern
                       branding that elevate your digital presence.
                     </p>
-                    
+
                     {/* Icons Grid */}
                     <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
                       <FaFigma size={32} className="text-slate-500" title="Figma" />
@@ -247,28 +259,31 @@ const videoVariant = {
 
               {active === 4 && (
                 <div>
-                  {/* Video Section */}
-                  <div className="relative h-[220px] sm:h-[280px] bg-black">
-                    <video
-                      src="/videos/socila-media.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
+                  {/* Image Section */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    className="relative h-[220px] sm:h-[280px]"
+                  >
+                    <Image
+                      src="/images/digital-marketing.png"
+                      alt="Social Media Marketing"
+                      fill
+                      className="object-contain"
                     />
-                  </div>
-                  
+                  </motion.div>
+
                   {/* Content Section */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
+                    <h3 className="font-semibold text-[24px] mb-4">
                       Social Media Marketing
                     </h3>
-                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+                    <p className="text-[18px] text-slate-300 leading-relaxed mb-6">
                       We manage your social presence with creative content, ads, and
                       growth-focused strategies to help your brand grow.
                     </p>
-                    
+
                     {/* Icons Grid */}
                     <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
                       <FaWhatsapp size={32} className="text-green-500" title="WhatsApp" />
@@ -281,28 +296,31 @@ const videoVariant = {
 
               {active === 5 && (
                 <div>
-                  {/* Video Section */}
-                  <div className="relative h-[220px] sm:h-[280px] bg-black">
-                    <video
-                      src="/videos/dashboard.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
+                  {/* Image Section */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    className="relative h-[220px] sm:h-[280px]"
+                  >
+                    <Image
+                      src="/images/ai-agent.png"
+                      alt="AI & Automation"
+                      fill
+                      className="object-contain"
                     />
-                  </div>
-                  
+                  </motion.div>
+
                   {/* Content Section */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="font-bold text-2xl sm:text-3xl mb-4">
+                    <h3 className="font-semibold text-[24px] mb-4">
                       AI & Automation
                     </h3>
-                    <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+                    <p className="text-[18px] text-slate-300 leading-relaxed mb-6">
                       We build AI assistants, chatbot systems, and automation workflows
                       using modern AI APIs to reduce manual work and scale operations.
                     </p>
-                    
+
                     {/* Icons Grid */}
                     <div className="flex flex-wrap gap-4 justify-center pt-4 border-t border-slate-700">
                       <TbBrandPython size={32} className="text-white" title="Python" />
@@ -324,9 +342,8 @@ const videoVariant = {
             <button
               key={num}
               onClick={() => setActive(num)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                active === num ? 'w-8 bg-blue-500' : 'w-2 bg-slate-600'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 ${active === num ? 'w-8 bg-gradient-to-r from-cyan-500 to-fuchsia-500' : 'w-2 bg-slate-600'
+                }`}
               aria-label={`Go to service ${num}`}
             />
           ))}
@@ -340,8 +357,8 @@ const videoVariant = {
           {/* LEFT SIDE - Desktop */}
           <aside className="md:sticky md:top-24 h-fit">
             <div className="flex flex-col pb-6 md:pb-8">
-              <h2 className="text-3xl sm:text-4xl font-bold">Our Services</h2>
-              <p className="text-base sm:text-lg text-slate-400 mt-3 leading-relaxed">
+              <h2 className="text-[36px] font-bold">Our Services</h2>
+              <p className="text-[18px] text-slate-400 mt-3 leading-relaxed">
                 Fast, scalable, and user-friendly applications built with modern tech.
               </p>
             </div>
@@ -360,10 +377,10 @@ const videoVariant = {
                   <div className="h-[350]">
                     <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
+                        <h3 className="font-semibold text-[24px] leading-tight">
                           Web Apps & Dashboards
                         </h3>
-                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
+                        <p className="text-justify text-[18px] text-slate-300 mt-3 leading-relaxed">
                           We develop responsive apps and internal dashboards using clean APIs,
                           secure architecture, and best-in-class frontend frameworks —
                           tailored for startups and enterprises.
@@ -388,10 +405,10 @@ const videoVariant = {
                   <div className="h-[350]">
                     <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
+                        <h3 className="font-semibold text-[24px] leading-tight">
                           Mobile App Development
                         </h3>
-                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
+                        <p className="text-justify text-[18px] text-slate-300 mt-3 leading-relaxed">
                           We build high-quality mobile apps for Android & iOS using a shared
                           codebase — ensuring fast delivery, smooth performance, and scalable
                           architecture.
@@ -414,10 +431,10 @@ const videoVariant = {
                   <div className="h-[350]">
                     <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
+                        <h3 className="font-semibold text-[24px] leading-tight">
                           UI/UX & Branding
                         </h3>
-                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
+                        <p className="text-justify text-[18px] text-slate-300 mt-3 leading-relaxed">
                           From user flows to design systems, we craft intuitive UI/UX and modern
                           branding that elevate your digital presence.
                         </p>
@@ -439,10 +456,10 @@ const videoVariant = {
                   <div className="h-[350]">
                     <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
+                        <h3 className="font-semibold text-[24px] leading-tight">
                           Social Media Marketing
                         </h3>
-                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
+                        <p className="text-justify text-[18px] text-slate-300 mt-3 leading-relaxed">
                           We manage your social presence with creative content, ads, and
                           growth-focused strategies to help your brand grow.
                         </p>
@@ -462,10 +479,10 @@ const videoVariant = {
                   <div className="h-[350]">
                     <div className="flex flex-col justify-between pb-8 h-full">
                       <div>
-                        <h3 className="font-bold text-2xl sm:text-3xl leading-tight">
+                        <h3 className="font-semibold text-[24px] leading-tight">
                           AI & Automation
                         </h3>
-                        <p className="text-justify text-base sm:text-lg text-slate-300 mt-3 leading-relaxed">
+                        <p className="text-justify text-[18px] text-slate-300 mt-3 leading-relaxed">
                           We build AI assistants, chatbot systems, and automation workflows
                           using modern AI APIs to reduce manual work and scale operations.
                         </p>
@@ -489,95 +506,95 @@ const videoVariant = {
           {/* RIGHT SIDE - Desktop Videos */}
           <div className="flex flex-col gap-24 lg:gap-32">
 
-          <motion.div
-            ref={t1}
-            variants={videoVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.4 }}
-                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
-          >
-            <video
-              src="/videos/dashboard.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <motion.div
+              ref={t1}
+              variants={videoVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-3xl overflow-hidden h-[500px] lg:h-[600px] cursor-pointer"
+            >
+              <Image
+                src="/images/dashboard.png"
+                alt="Web Apps & Dashboards"
+                fill
+                className="object-contain"
+              />
+            </motion.div>
 
-          <motion.div
-            ref={t2}
-            variants={videoVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.4 }}
-                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
-          >
-            <video
-              src="/videos/mobile.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <motion.div
+              ref={t2}
+              variants={videoVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-3xl overflow-hidden h-[500px] lg:h-[600px] cursor-pointer"
+            >
+              <Image
+                src="/images/mobile-app.png"
+                alt="Mobile App Development"
+                fill
+                className="object-contain"
+              />
+            </motion.div>
 
-          <motion.div
-            ref={t3}
-            variants={videoVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.4 }}
-                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
-          >
-            <video
-              src="/videos/UIUX-branding.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <motion.div
+              ref={t3}
+              variants={videoVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-3xl overflow-hidden h-[500px] lg:h-[600px] cursor-pointer"
+            >
+              <Image
+                src="/images/branding.png"
+                alt="UI/UX & Branding"
+                fill
+                className="object-contain"
+              />
+            </motion.div>
 
-          <motion.div
-            ref={t4}
-            variants={videoVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.4 }}
-                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
-          >
-            <video
-              src="/videos/socila-media.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <motion.div
+              ref={t4}
+              variants={videoVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-3xl overflow-hidden h-[500px] lg:h-[600px] cursor-pointer"
+            >
+              <Image
+                src="/images/digital-marketing.png"
+                alt="Social Media Marketing"
+                fill
+                className="object-contain"
+              />
+            </motion.div>
 
-          <motion.div
-            ref={t5}
-            variants={videoVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.4 }}
-                className="rounded-3xl overflow-hidden h-[500px] lg:h-[600px] bg-black"
-          >
-            <video
-              src="/videos/dashboard.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <motion.div
+              ref={t5}
+              variants={videoVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-3xl overflow-hidden h-[500px] lg:h-[600px] cursor-pointer"
+            >
+              <Image
+                src="/images/ai-agent.png"
+                alt="AI & Automation"
+                fill
+                className="object-contain"
+              />
+            </motion.div>
 
           </div>
         </div>
