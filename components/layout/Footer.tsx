@@ -23,7 +23,7 @@ export function Footer() {
             {/* Contact Information */}
             <div className="mb-6 space-y-2 text-slate-400">
               <p>+91 7619238682</p>
-              <p>viyainfodigitallab@gmail.com</p>
+              <p>info@viyainfo.com</p>
             </div>
 
             {/* Navigation Links */}
