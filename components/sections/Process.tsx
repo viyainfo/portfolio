@@ -41,7 +41,7 @@ export function Process() {
     const checkMobile = () => {
       setIsMobileView(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -171,6 +171,12 @@ export function Process() {
     }
   }, [endTriggerInView, step6InView]);
 
+  // Preload first image for faster initial load
+  useEffect(() => {
+    const firstImage = new window.Image();
+    firstImage.src = "/images/OP_Discover.png";
+  }, []);
+
   const steps = [
     {
       number: "1",
@@ -239,11 +245,11 @@ export function Process() {
       <div ref={containerRef}>
         {/* MOBILE LAYOUT - Title and Steps Only */}
         <div className="lg:hidden">
-          <div className="mb-6">
-            <h2 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+          <div className="mb-6 text-center">
+            <h2 className="text-[36px] font-bold text-white leading-tight">
               Our Process
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mb-2">
+            <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto">
               A simple, structured, and transparent workflow that ensures quality delivery every time.
             </p>
           </div>
@@ -264,19 +270,18 @@ export function Process() {
                     <div className="relative flex flex-col items-center">
                       {/* Number Circle - Animated */}
                       <motion.div
-                        className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center z-10 relative ${
-                          isActive || isPassed 
-                            ? 'bg-gradient-to-br from-cyan-500 to-fuchsia-500' 
+                        className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center z-10 relative ${isActive || isPassed
+                            ? 'bg-gradient-to-br from-cyan-500 to-fuchsia-500'
                             : 'bg-slate-900'
-                        }`}
+                          }`}
                         initial={false}
                         animate={{
                           scale: isActive ? 1.1 : 1,
-                          boxShadow: isActive 
-                            ? '0 0 15px rgba(6, 182, 212, 0.4)' 
+                          boxShadow: isActive
+                            ? '0 0 15px rgba(6, 182, 212, 0.4)'
                             : 'none'
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 0.3,
                           ease: "easeOut"
                         }}
@@ -304,7 +309,7 @@ export function Process() {
                             className="absolute inset-0 bg-gradient-to-b from-cyan-500 to-fuchsia-500 origin-top"
                             initial={{ scaleY: 0 }}
                             animate={{ scaleY: isPassed ? 1 : 0 }}
-                            transition={{ 
+                            transition={{
                               duration: 0.5,
                               ease: [0.4, 0, 0.2, 1]
                             }}
@@ -333,7 +338,7 @@ export function Process() {
             </div>
 
             {/* End trigger - invisible element to detect when scrolled past step 6 */}
-            <div ref={setEndTriggerRefMobile} className="h-24" />
+            <div ref={setEndTriggerRefMobile} className="lg:h-24" />
           </div>
         </div>
 
@@ -342,11 +347,11 @@ export function Process() {
           {/* LEFT COLUMN - Sticky Title & Animated Image */}
           <div className={`self-start transition-all duration-300 ${isSticky ? 'lg:sticky lg:top-24' : 'lg:relative'}`}>
             <div>
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              <div className="mb-6 lg:mb-8 text-center lg:text-left">
+                <h2 className="text-[36px] font-bold text-white leading-tight">
                   Our Process
                 </h2>
-                <p className="text-sm md:text-base text-slate-400 mb-2">
+                <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                   A simple, structured, and transparent workflow that ensures quality delivery every time.
                 </p>
               </div>
@@ -362,7 +367,7 @@ export function Process() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ 
+                        transition={{
                           duration: 0.4,
                           ease: [0.4, 0, 0.2, 1]
                         }}
@@ -376,6 +381,9 @@ export function Process() {
                               fill
                               className="object-cover transition-all duration-500"
                               style={{ borderRadius: '1.5rem' }}
+                              priority={activeStep === 1}
+                              loading={activeStep === 1 ? "eager" : "lazy"}
+                              quality={85}
                             />
                           ) : (
                             /* Fallback: Gradient Placeholder */
@@ -408,19 +416,18 @@ export function Process() {
                     <div className="relative flex flex-col items-center">
                       {/* Number Circle - Animated */}
                       <motion.div
-                        className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center z-10 relative ${
-                          isActive || isPassed 
-                            ? 'bg-gradient-to-br from-cyan-500 to-fuchsia-500' 
+                        className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center z-10 relative ${isActive || isPassed
+                            ? 'bg-gradient-to-br from-cyan-500 to-fuchsia-500'
                             : 'bg-slate-900'
-                        }`}
+                          }`}
                         initial={false}
                         animate={{
                           scale: isActive ? 1.1 : 1,
-                          boxShadow: isActive 
-                            ? '0 0 20px rgba(6, 182, 212, 0.4)' 
+                          boxShadow: isActive
+                            ? '0 0 20px rgba(6, 182, 212, 0.4)'
                             : 'none'
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 0.3,
                           ease: "easeOut"
                         }}
@@ -448,7 +455,7 @@ export function Process() {
                             className="absolute inset-0 bg-gradient-to-b from-cyan-500 to-fuchsia-500 origin-top"
                             initial={{ scaleY: 0 }}
                             animate={{ scaleY: isPassed ? 1 : 0 }}
-                            transition={{ 
+                            transition={{
                               duration: 0.5,
                               ease: [0.4, 0, 0.2, 1]
                             }}

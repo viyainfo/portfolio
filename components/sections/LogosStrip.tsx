@@ -23,14 +23,14 @@ export function LogosStrip() {
   ];
 
   return (
-    <div className="absolute bottom-4 left-0 right-0 w-full px-4 sm:px-6">
+    <div className="absolute bottom-0 sm:bottom-4 left-0 right-0 w-full px-4 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden py-2 sm:py-3">
           {/* Left gradient blur overlay */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 lg:w-20 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none" />
           
           {/* Right gradient blur overlay */}
-          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 lg:w-20 bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent z-10 pointer-events-none" />
           
           <div className="overflow-hidden w-full">
             <motion.div
@@ -45,7 +45,7 @@ export function LogosStrip() {
               {logos.map((logo, index) => (
                 <div
                   key={`${logo.name}-1-${index}`}
-                  className="flex items-center gap-2 sm:gap-2.5 md:gap-3  px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2.5 text-slate-500"
+                  className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2 lg:px-4 lg:py-2.5 text-slate-500"
                 >
                   {logo.icon}
                   <span className="text-xs sm:text-sm md:text-base font-medium">{logo.name}</span>
@@ -54,7 +54,7 @@ export function LogosStrip() {
               {logos.map((logo, index) => (
                 <div
                   key={`${logo.name}-2-${index}`}
-                  className="flex items-center gap-2 sm:gap-2.5 md:gap-3 px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2.5 text-slate-500"
+                  className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2 lg:px-4 lg:py-2.5 text-slate-500"
                 >
                   {logo.icon}
                   <span className="text-xs sm:text-sm md:text-base font-medium">{logo.name}</span>

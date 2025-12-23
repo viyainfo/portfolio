@@ -4,6 +4,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import FloatingIcons from "../ui/FloatingIcons";
+import { Section } from "@/components/layout/Section";
 
 import {
   SiAngular,
@@ -110,7 +111,7 @@ export function Services() {
   };
 
   return (
-    <div id="services" className="text-white py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
+    <Section id="services" className="text-white">
       {/* Mobile Card Slider */}
       <div className="md:hidden mb-16">
         <div className="text-center mb-8">
@@ -599,6 +600,6 @@ export function Services() {
           </div>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }

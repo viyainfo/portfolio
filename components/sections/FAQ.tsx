@@ -52,7 +52,7 @@ export function FAQ() {
   ];
 
   return (
-    <Section id="faq" className="!pb-24">
+    <Section id="faq">
       {/* Desktop Two-Column Layout */}
       <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16" ref={containerRef}>
         {/* Left Column - Sticky */}
@@ -63,9 +63,14 @@ export function FAQ() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-5">
-              Frequently Asked Questions
-            </h2>
+            <div className="text-center lg:text-left">
+              <h2 className="text-[36px] font-bold text-white leading-tight mb-5">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Find answers to common questions about our services and process.
+              </p>
+            </div>
 
             {/* Decorative Card */}
             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 p-1">
@@ -94,12 +99,14 @@ export function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
+          className="mb-8 text-center"
         >
-          <p className="text-sm text-fuchsia-400 mb-3">&#123; FAQ &#125;</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-50 leading-tight mb-6">
-            CLEAR SOLUTIONS TO YOUR CONCERNS
+          <h2 className="text-[36px] font-bold text-white leading-tight mb-6">
+            Frequently Asked Questions
           </h2>
+          <p className="text-[18px] text-slate-400 mt-3 leading-relaxed mb-6 max-w-2xl mx-auto">
+            Find answers to common questions about our services and process.
+          </p>
         </motion.div>
 
         <div className="space-y-3">

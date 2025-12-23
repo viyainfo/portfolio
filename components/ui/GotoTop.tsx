@@ -33,8 +33,7 @@ export default function GoToTop() {
                     transition={{ duration: 0.3 }}
                     className="
             fixed bottom-6 right-6 z-50
-            p-3 rounded-full bg-gradient-to-br from-cyan-500 to-fuchsia-500 text-white 
-            border border-transparent shadow-lg shadow-cyan-500/30
+            p-3 rounded-full bg-gradient-to-br from-cyan-500 to-fuchsia-500 text-white shadow-lg shadow-cyan-500/30
             hover:from-cyan-600 hover:to-fuchsia-600 hover:shadow-cyan-500/50 active:scale-95
             transition-all duration-300
           "

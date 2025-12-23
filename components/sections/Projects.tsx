@@ -37,7 +37,7 @@ export function Projects() {
   ];
 
   return (
-    <Section id="projects" className="!pb-24">
+    <Section id="projects">
       {/* Desktop Layout */}
       <div className="hidden lg:block" ref={containerRef}>
         {/* Container that holds both title and cards - limits sticky behavior */}
@@ -45,19 +45,17 @@ export function Projects() {
           {/* Sticky Header - Stays visible during card animations, then scrolls with section */}
           <div className="sticky top-20 z-50 bg-slate-950 mb-8">
             <motion.div
-                    variants={fadeUp}
-                    custom={0}
-                    className="text-center"
-                >
-                    <div className="inline-block">
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                            Our Work
-                        </h2>
-                        <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-                           A glimpse of the digital solutions we’ve delivered for businesses across different industries.
-                        </p>
-                    </div>
-                </motion.div>
+              variants={fadeUp}
+              custom={0}
+              className="text-center mb-8"
+            >
+                <h2 className="text-[36px] font-bold text-white leading-tight">
+                  Our Work
+                </h2>
+                <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto">
+                  A glimpse of the digital solutions we’ve delivered for businesses across different industries.
+                </p>
+            </motion.div>
           </div>
 
           {/* Stacking Cards Container */}
@@ -80,13 +78,13 @@ export function Projects() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-12 text-center"
         >
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-50">
-            Projects that feel premium and perform.
+          <h2 className="text-[36px] font-bold text-white leading-tight">
+            Our Work
           </h2>
-          <p className="mt-2 text-sm text-slate-400 max-w-xl">
-            Real-world apps shipped for startups and internal teams.
+          <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto">
+            A glimpse of the digital solutions we've delivered for businesses across different industries.
           </p>
         </motion.div>
 

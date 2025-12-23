@@ -41,10 +41,10 @@ export function Teams() {
                     className="text-center mb-8"
                 >
                     <div className="inline-block">
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                        <h2 className="text-[36px] font-bold text-white leading-tight">
                             Meet Our Team
                         </h2>
-                        <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+                        <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto">
                             A group of passionate professionals dedicated to building high-quality digital experiences.
                         </p>
                     </div>

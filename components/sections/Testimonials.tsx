@@ -28,15 +28,19 @@ export function Testimonials() {
     <Section className="">
       <div className="space-y-12 overflow-hidden">
         <div className="mb-20 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight flex justify-center items-center gap-2">
+          <h2 className="text-[36px] font-bold text-white leading-tight flex flex-wrap justify-center items-center gap-2">
             <span>
               Why Choose
             </span>
             <span>
-              <img src='/viyainfo_brand.svg' alt="ViyaInfo" width={140} />
+              <img 
+                src='/viyainfo_brand.svg' 
+                alt="ViyaInfo" 
+                width={140}
+              />
             </span>
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
+          <p className="text-[18px] text-slate-400 mt-3 leading-relaxed max-w-2xl mx-auto">
             We combine creativity, technology, and strategy to deliver digital solutions that create real impact.
           </p>
         </div>

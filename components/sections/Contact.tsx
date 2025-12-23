@@ -92,11 +92,13 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="flex flex-col"
         >
+          <div className="text-center lg:text-left mb-5">
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-5">
+            <h2 className="text-[36px] font-bold text-white leading-tight mb-5">
             Let’s Build Something Amazing
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto pb-5">Have an idea or project in mind? Our team is ready to help you turn it into a powerful digital product.</p>
+            <p className="text-[18px] text-slate-400 mt-3 leading-relaxed pb-5 max-w-2xl mx-auto lg:mx-0">Have an idea or project in mind? Our team is ready to help you turn it into a powerful digital product.</p>
+          </div>
 
           {/* Profile Card */}
           <div className="flex items-start gap-4 p-6 rounded-2xl bg-slate-900/50 backdrop-blur-sm border border-slate-800/50">
@@ -137,11 +139,10 @@ export function Contact() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className={`p-4 rounded-xl flex items-center gap-3 ${
-                    submitStatus.type === "success"
-                      ? "bg-green-500/10 border border-green-500/30 text-green-400"
-                      : "bg-red-500/10 border border-red-500/30 text-red-400"
-                  }`}
+                  className={`p-4 rounded-xl flex items-center gap-3 ${submitStatus.type === "success"
+                    ? "bg-green-500/10 border border-green-500/30 text-green-400"
+                    : "bg-red-500/10 border border-red-500/30 text-red-400"
+                    }`}
                 >
                   {submitStatus.type === "success" ? (
                     <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
@@ -236,6 +237,15 @@ export function Contact() {
               {isSubmitting ? "Sending..." : "Submit"}
             </button>
           </form>
+          {/* <div className="w-[100px] h-[100px] bg-green-500 rounded-full shadow-lg">
+            <a
+              href="https://wa.me/917616238682"
+              target="_blank"
+              className="flex items-center justify-center w-full h-full"
+            >
+              <img src="/whatsapp.svg" alt="WhatsApp" />
+            </a>
+          </div> */}
         </motion.div>
       </div>
     </Section>
