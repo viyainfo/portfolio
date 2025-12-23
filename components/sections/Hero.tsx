@@ -124,9 +124,9 @@ export function Hero() {
           {/* Glowing card background */}
           <div className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-fuchsia-500/40 via-violet-500/30 to-cyan-400/30 blur-2xl opacity-70" />
           <div className="relative rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-4 sm:p-5 lg:p-6 shadow-2xl shadow-fuchsia-900/60">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-2">
+            <div className="flex flex-row items-start sm:items-center justify-between gap-2 sm:gap-2">
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="flex h-6 w-6 sm:h-9 sm:w-9 items-center justify-center rounded-xl sm:rounded-2xl bg-slate-900 border border-slate-700 flex-shrink-0">
+                <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl sm:rounded-2xl bg-slate-900 border border-slate-700 flex-shrink-0">
                   <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-fuchsia-400" />
                 </div>
                 <div className="min-w-0">
@@ -136,7 +136,7 @@ export function Hero() {
                   <div className="text-[10px] sm:text-sm text-slate-400">Design → Code → Deploy</div>
                 </div>
               </div>
-              <span className="rounded-full bg-emerald-500/15 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[12px] font-medium text-emerald-300 border border-emerald-500/40 whitespace-nowrap self-start sm:self-auto">
+              <span className="rounded-full bg-emerald-500/15 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[12px] font-medium text-emerald-300 border border-emerald-500/40 whitespace-nowrap ">
                 4–8 weeks avg
               </span>
             </div>

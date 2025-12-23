@@ -42,6 +42,9 @@ export function Services() {
   const [active, setActive] = useState(1);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [direction, setDirection] = useState<'left' | 'right'>('left');
+  const prevActiveRef = useRef(1);
+  const directionRef = useRef<'left' | 'right'>('left');
 
   const t1 = useRef(null);
   const t2 = useRef(null);
@@ -56,16 +59,25 @@ export function Services() {
   const v5 = useInView(t5, { amount: 0.5 });
 
   useEffect(() => {
-    if (v1) setActive(1);
-    else if (v2) setActive(2);
-    else if (v3) setActive(3);
-    else if (v4) setActive(4);
-    else if (v5) setActive(5);
+    let newActive = active;
+    if (v1) newActive = 1;
+    else if (v2) newActive = 2;
+    else if (v3) newActive = 3;
+    else if (v4) newActive = 4;
+    else if (v5) newActive = 5;
+    
+    if (newActive !== active && newActive !== prevActiveRef.current) {
+      // Determine direction based on previous active
+      setDirection(newActive > prevActiveRef.current ? 'left' : 'right');
+      prevActiveRef.current = active;
+      setActive(newActive);
+    }
   }, [v1, v2, v3, v4, v5]);
 
   // Swipe handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX); // Initialize touchEnd to same position
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -73,14 +85,32 @@ export function Services() {
   };
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 75) {
-      // Swipe left - next service
-      setActive((prev) => (prev < 5 ? prev + 1 : prev));
+    const swipeDistance = touchStart - touchEnd;
+    
+    if (Math.abs(swipeDistance) > 75) {
+      if (swipeDistance > 75) {
+        // Swipe left - next service
+        const newActive = active < 5 ? active + 1 : active;
+        if (newActive !== active) {
+          directionRef.current = 'left';
+          setDirection('left');
+          prevActiveRef.current = active;
+          setActive(newActive);
+        }
+      } else if (swipeDistance < -75) {
+        // Swipe right - previous service
+        const newActive = active > 1 ? active - 1 : active;
+        if (newActive !== active) {
+          directionRef.current = 'right';
+          setDirection('right');
+          prevActiveRef.current = active;
+          setActive(newActive);
+        }
+      }
     }
-    if (touchStart - touchEnd < -75) {
-      // Swipe right - previous service
-      setActive((prev) => (prev > 1 ? prev - 1 : prev));
-    }
+    // Reset touch positions
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   const parentVariant = {
@@ -128,12 +158,13 @@ export function Services() {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={directionRef.current}>
             <motion.div
               key={active}
-              initial={{ opacity: 0, x: 100 }}
+              custom={directionRef.current}
+              initial={{ opacity: 0, x: directionRef.current === 'left' ? 100 : -100 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
+              exit={{ opacity: 0, x: directionRef.current === 'left' ? -100 : 100 }}
               transition={{ duration: 0.3 }}
               className="bg-slate-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-800"
             >
