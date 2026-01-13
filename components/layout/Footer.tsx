@@ -1,20 +1,26 @@
+import { FaLinkedinIn, FaInstagram, FaGoogle, FaFacebookF   } from "react-icons/fa6";
 export function Footer() {
-  const navLinks = ["Services", "Projects", "FAQ", "Contact"];
+  const navLinks = [
+    { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/viyainfo-digital-labs/" },
+    { icon: FaInstagram , href: "https://www.instagram.com/viya_info?igsh=MWRremdqa2JlOWFvOA==" },
+    { icon: FaGoogle, href: "mailto:info@viyainfo.com" },
+    { icon: FaFacebookF , href: "#" }
+  ];
 
   return (
     <footer className="border-t border-slate-800/80 bg-slate-950/95 mt-16">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Main Footer Content - Two Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
-          
+
           {/* Left Column - Company Info & Navigation */}
           <div>
             {/* Logo and Company Name */}
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-2">
-                <img 
-                  src="/viyainfo_brand.svg" 
-                  alt="ViyaInfo" 
+                <img
+                  src="/viyainfo_brand.svg"
+                  alt="ViyaInfo"
                   className="h-20"
                 />
               </div>
@@ -28,15 +34,16 @@ export function Footer() {
 
             {/* Navigation Links */}
             <div className="mb-8">
-              <h4 className="text-sm font-semibold text-slate-300 mb-3">Navigation</h4>
-              <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-400">
+              {/* <h4 className="text-sm font-semibold text-slate-300 mb-3">Connect with</h4> */}
+              <div className="flex flex-wrap gap-x-4 text-sm text-slate-400">
                 {navLinks.map((link, index) => (
                   <a
-                    key={link}
-                    href={`#${link.toLowerCase()}`}
-                    className="hover:text-slate-200 transition-colors"
+                    key={link.href}
+                    href={link.href}
+                    className="hover:text-slate-200 transition-colors bg-slate-600/50 p-2 rounded-full"
+                    target="_blank"
                   >
-                    {link}
+                    {<link.icon />}
                   </a>
                 ))}
               </div>
@@ -46,8 +53,8 @@ export function Footer() {
             <div className="pt-6 border-t border-slate-800">
               <p className="text-xs text-slate-500">
                 © Copyright {new Date().getFullYear()}. All Rights Reserved by{" "}
-                <a 
-                  href="https://viyainfo.com" 
+                <a
+                  href="https://viyainfo.com"
                   className="text-blue-400 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -93,8 +100,8 @@ export function Footer() {
                 <div className="w-5 h-5 rounded-full bg-gradient-to-br from-fuchsia-500 to-cyan-500 flex items-center justify-center">
                   <span className="text-[10px] font-bold text-white">V</span>
                 </div>
-                <a 
-                  href="https://viyainfo.com" 
+                <a
+                  href="https://viyainfo.com"
                   className="text-blue-400 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"

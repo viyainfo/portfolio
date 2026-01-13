@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Rocket, CheckCircle2 } from "lucide-react";
+import { Sparkles, CheckCircle2, Download } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { LogosStrip } from "./LogosStrip";
@@ -99,19 +99,13 @@ export function Hero() {
             className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3"
           >
             <a
-              href="#projects"
+              href="/ViyaInfo_Brochure.pdf"
+              download="ViyaInfo_Brochure.pdf"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-fuchsia-500/40 hover:brightness-110 active:scale-[0.98] transition-all"
             >
-              {/* <Rocket className="h-4 w-4" />
-              <span>Launch my project</span> */}
-              <span>View work</span>
-              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span>Get Brochure</span>
+              <Download strokeWidth={2.5} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </a>
-            {/* <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-200 hover:border-slate-500 hover:bg-slate-800/80 transition-all"
-            >
-            </a> */}
           </motion.div>
         </div>
 
